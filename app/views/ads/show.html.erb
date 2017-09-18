@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_ad_path(@ad) %> |
-<%= link_to 'Back', ads_path %>
+<h3><%= @ad.title %></h3>
+<p><%= @ad.body %></p>
+
+<% if can? :manage, @ad %><%= link_to 'Edit', edit_ad_path(@ad) %><% end %> | <%= link_to 'Back', ads_path %>
