@@ -6,8 +6,9 @@
   <p><b><%= ad.title %></b></p>
   <p><%= ad.body %></p>   
   <p><i>created by: <b><%= @users.find(ad.user_id).username %></b> </i></p>  
+  <% if can? :manage, ad %>
   <p><%= link_to 'Show', ad %> | <%= link_to 'Edit', edit_ad_path(ad) %> | <%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <% end %>
-
+  <% end %>
 <br>
 <%= link_to 'New Ad', new_ad_path %>
