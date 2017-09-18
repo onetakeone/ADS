@@ -1,0 +1,12 @@
+<%= form_for @type do |form| %>
+  
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_area :ad_type, id: :type_ad_type %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

@@ -6,6 +6,7 @@ class AdsController < ApplicationController
   def index
     @ads = Ad.all
     @users = User.all
+    @types = Type.all
   end
 
   # GET /ads/1
@@ -18,6 +19,12 @@ class AdsController < ApplicationController
   def new
     @user = current_user
     @ad = @user.ads.new
+    @types = Type.all
+    @options = []
+    @types.each do |t|
+      @options << [t.ad_type, t.id]
+    end
+
   end
 
   # GET /ads/1/edit
@@ -29,6 +36,11 @@ class AdsController < ApplicationController
   def create
     @user = current_user
     @ad = @user.ads.new(ad_params)
+    @types = Type.all
+    @options = []
+    @types.each do |t|
+      @options << [t.ad_type, t.id]
+    end
 
     respond_to do |format|
       if @ad.save
@@ -73,6 +85,6 @@ class AdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ad_params
-      params.require(:ad).permit(:title, :body)
+      params.require(:ad).permit(:title, :body, :type_id)
     end
 end

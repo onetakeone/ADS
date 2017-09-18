@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post "users/:id/edit", to: "users#update"
 
   resources :ads
-  resources :statuses
+  resources :types
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -14,16 +14,17 @@ ActiveRecord::Schema.define(version: 20170918123321) do
 
   create_table "ads", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "type_id"
+    t.integer "status", default: 0, null: false
     t.string "title"
     t.text "body"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_ads_on_user_id"
   end
 
-  create_table "statuses", force: :cascade do |t|
-    t.string "kind"
+  create_table "types", force: :cascade do |t|
+    t.string "ad_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
