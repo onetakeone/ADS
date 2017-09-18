@@ -1,0 +1,12 @@
+<h2>edit</h2>
+
+<%= form_for :user do |f| %>
+	<div class="field">
+	  <%= f.select :role, User.role.values %>
+	</div>
+
+	<div class="actions">
+    <%= f.submit "set role" %>
+  </div>
+
+<% end %>
