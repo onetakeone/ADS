@@ -2,8 +2,9 @@
 
 <h1>Ads</h1>
 <% @ads.each do |ad| %>
-  <p><%= ad.title %></p>
-  <p><%= ad.body %></p>     
+  <p><b><%= ad.title %></b></p>
+  <p><%= ad.body %></p>   
+  <p><i><%= @users.find(ad.user_id).username %></i></p>  
   <p><%= link_to 'Show', ad %> | <%= link_to 'Edit', edit_ad_path(ad) %> | <%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <% end %>
 
