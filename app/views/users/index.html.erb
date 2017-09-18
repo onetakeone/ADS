@@ -1,5 +1,5 @@
 <h2>users</h2>
 
-<%= @users.each do |u| %>
-	<%= u.username %> | <%= u.role %> | 
+<% @users.each do |u| %>
+	<p><%= u.username %> | <%= u.role %> | <%= link_to 'edit_role', controller: :users, action: :edit, id: u.id %></p>
 <% end %>
