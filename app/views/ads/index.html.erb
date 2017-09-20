@@ -2,7 +2,7 @@
 <p id="notice"><%= notice %></p>
 
 <% @ads.each_with_index do |ad, i| %>
-  <h2><%= i+1 %> <%= @types.find(ad.type_id).ad_type %> </h2>
+    <h2><%= i+1 %> <%= @types.find(ad.type_id).ad_type %> </h2>
   <p><b><%= ad.title %></b></p>
   <p><%= ad.body %></p>   
   <p><i>created by: <b><%= @users.find(ad.user_id).username %></b> </i> </p> 
@@ -10,13 +10,17 @@
   <p>
   <% if can? :read, ad %>
     <%= link_to 'Show', ad %> | 
-    <% if can? :manage, ad %> 
-      <%= link_to 'Edit', edit_ad_path(ad) %> | 
-      <%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
+  <% end%>
+  <% if can? :update, ad %> 
+    <%= link_to 'Edit', edit_ad_path(ad) %> |
+  <% end %> 
+  <% if can? :destroy, ad %>
+    <%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
   </p>
 <% end %>
 
-<p><%= link_to 'New Ad', new_ad_path %></p>
+<% if can? :create, @ad1 %>
+  <p><%= link_to 'New Ad', new_ad_path %></p>
+<% end %>
 

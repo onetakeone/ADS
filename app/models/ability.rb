@@ -5,10 +5,13 @@ class Ability
     user ||= User.new 
     if user.role.admin?
       can :manage, User
-      can :destroy, :read, Ad
+      can :destroy, Ad
+      can :read, Ad
       can :manage, Type     
     elsif user.role.user?
-      can :manage, Ad
+      can :create, Ad
+      can :read, Ad 
+      can :update, Ad
     else
       can :read, Ad
     end

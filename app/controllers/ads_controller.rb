@@ -5,6 +5,7 @@ class AdsController < ApplicationController
     @ads = Ad.all
     @users = User.all
     @types = Type.all
+    @ad1 = @ads.first
   end
 
   def show
