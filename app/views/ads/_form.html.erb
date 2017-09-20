@@ -25,6 +25,12 @@
     <%= form.label :type %>
     <%= form.select :type_id, options_for_select(@options) %>
     
+  <div class="field">
+    <%= image_tag(@ad.image_url) if @ad.image? %> 
+    <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
