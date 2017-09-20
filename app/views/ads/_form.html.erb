@@ -1,29 +1,16 @@
-<%= form_with(model: ad, local: true) do |form| %>
-  <% if ad.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(ad.errors.count, "error") %> prohibited this ad from being saved:</h2>
-
-      <ul>
-      <% ad.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for @ad do |form| %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :post_title %>
+    <%= form.input :title, label: 'Title', error: 'Username is mandatory, please specify one', required: false, id: :post_title %>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, id: :post_body %>
+    <%= form.input :body, as: :text, label: 'Advert', error: 'Please write down you advertisement', required: false, id: :post_body %>
   </div>
 
   <div class="field">
-    <%= form.label :type %>
-    <%= form.select :type_id, options_for_select(@options) %>
+    <%= form.input :type_id, collection: @options %>
+  </div>
     
   <div class="field">
     <%= image_tag(@ad.image_url) if @ad.image? %> 
