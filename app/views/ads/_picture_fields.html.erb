@@ -1,5 +1,9 @@
 <div class='nested-fields'>
-    <%= f.file_field :image_src %>    
-    <%= f.hidden_field :image_src_cache %>
-    <%= link_to_remove_association "remove task", f %>
+  <%= f.input :image_src, label: 'attach image' %>    
+  <%= f.hidden_field :image_src_cache %>
+  <p class="mb-4">
+    <button type="button" class="btn btn-warning">
+    	<%= link_to_remove_association "remove task", f %>    	
+    </button>
+  </p>
 </div>
