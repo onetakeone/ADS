@@ -1,25 +1,29 @@
-<%= simple_form_for @ad do |form| %>
+<%= simple_form_for @ad do |f| %>
 
-  <div class="field">
-    <%= form.input :title, label: 'Title', error: 'Username is mandatory, please specify one', required: false, id: :post_title %>
-  </div>
+  
+    <%= f.input :title, label: 'Title', error: 'Username is mandatory, please specify one', required: false, id: :post_title %>
+    <%= f.input :body, as: :text, label: 'Advert', error: 'Please write down you advertisement', required: false, id: :post_body %>
+    <%= f.input :type_id, collection: @options %>
+  
 
-  <div class="field">
-    <%= form.input :body, as: :text, label: 'Advert', error: 'Please write down you advertisement', required: false, id: :post_body %>
-  </div>
-
-  <div class="field">
-    <%= form.input :type_id, collection: @options %>
-  </div>
-    
   <div class="field">
     <%= image_tag(@ad.image_url) if @ad.image? %> 
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div> 
+  
+  <h2>pictures</h2>  
+  <div id="tasks">
+    <%= f.simple_fields_for :pictures do |form| %>
+      <%= render 'picture_fields', :f => form %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add picture', f, :pictures %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 
 <% end %>

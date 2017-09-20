@@ -1,21 +1,16 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
 
-  # GET /ads
-  # GET /ads.json
   def index
     @ads = Ad.all
     @users = User.all
     @types = Type.all
   end
 
-  # GET /ads/1
-  # GET /ads/1.json
   def show
     @ad = Ad.find(params[:id])
   end
 
-  # GET /ads/new
   def new
     @user = current_user
     @ad = @user.ads.new
@@ -24,18 +19,14 @@ class AdsController < ApplicationController
     @types.each do |t|
       @options << [t.ad_type, t.id]
     end
-
   end
 
-  # GET /ads/1/edit
   def edit
   end
 
-  # POST /ads
-  # POST /ads.json
   def create
     @user = current_user
-    @ad = @user.ads.new(ad_params)
+    @ad = @user.ads.new(ad_params)    
     @types = Type.all
     @options = []
     @types.each do |t|
@@ -45,16 +36,12 @@ class AdsController < ApplicationController
     respond_to do |format|
       if @ad.save
         format.html { redirect_to @ad, notice: 'Ad was successfully created.' }
-        format.json { render :show, status: :created, location: @ad }
       else
-        format.html { render :new }
-        format.json { render json: @ad.errors, status: :unprocessable_entity }
+        format.html { render :new }        
       end
     end
   end
 
-  # PATCH/PUT /ads/1
-  # PATCH/PUT /ads/1.json
   def update
     respond_to do |format|
       if @ad.update(ad_params)
@@ -67,8 +54,6 @@ class AdsController < ApplicationController
     end
   end
 
-  # DELETE /ads/1
-  # DELETE /ads/1.json
   def destroy
     @ad.destroy
     respond_to do |format|
@@ -85,6 +70,6 @@ class AdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ad_params
-      params.require(:ad).permit(:title, :body, :type_id)
+      params.require(:ad).permit(:title, :body, :type_id, :image, pictures_attributes: [:id, :image_src, :done, :_destroy])
     end
 end
