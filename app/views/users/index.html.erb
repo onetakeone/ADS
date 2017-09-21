@@ -1,4 +1,4 @@
-<hh>MANAGE USERS</hh>
+<hh>MANAGE USERS | <button class="btn btn-primary btn-lg"><%= link_to 'CREATE', users_new_path %></button></hh>
 <div class="container">
  	<div class="row justify-content-md-center">
   	<% @users.each do |u| %>
@@ -7,16 +7,20 @@
 					<h3>user:</h3> <hu>| <%= u.username.capitalize %></hu>
 					<h3>role:</h3> <hu>| <i><%= u.role %></i></hu>
 			  </p><br>
+				
 				<% if can? :edit, u %>
-					<button type="button" class="btn btn-primary btn-sm">
-						<%= link_to 'Change role', controller: :users, action: :edit, id: u.id %>
+					<button type="button" class="btn btn-secondary btn-sm">
+						<%= link_to 'EDIT', controller: :users, action: :edit, id: u.id %>
 					</button>
 	  		<%end%> 
-	  		<% u.ads.each do |a| %>
-	  			<p>
-	  				<b><%= a.title %></b> | <u><%= link_to "#{a.state}", edit_ad_path(a) %></u>
-	  			</p>		  		
-			  <%end%>			
+
+	  		<table id="ads">
+	  			<% u.ads.each do |a| %>
+	  				<tr><td>
+	  					<b><%= a.title %></b> | <u><%= link_to "#{a.state}", edit_ad_path(a) %></u>
+	  				</td></tr>	  					  		
+			  	<%end%>			
+			  </table>
 		  </div>
 	  <%end%>
 	</div>

@@ -36,7 +36,7 @@
               <div id="nav"><%= link_to 'users', users_path %></div> 
             </a>
             <a class="dropdown-item">
-             <%if can? :manage, Type %> <div id="nav"><%= link_to "ad types", types_path %></div> <% end %>
+             <%if can? :manage, Type %> <div id="nav"><%= link_to "types", types_path %></div> <% end %>
             </a>
           </div>
         </li>
@@ -62,7 +62,7 @@
         </li>
 
         <li class="nav-item">
-        <a><div id="nav"><%= current_user.username if !current_user.nil? %></div></a>
+         <a href="<%= edit_user_registration_path %>"><div id="nav"><%= current_user.username if !current_user.nil? %></div></a>
         </li>
       </ul>    
   	</header>

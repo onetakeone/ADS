@@ -1,20 +1,17 @@
-<hh>MANAGE AD TYPES</hh>
+<hh>MANAGE AD TYPES | <button type="button" class="btn btn-primary btn-lg"><%= link_to 'NEW', new_type_path %></button></hh>
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-auto">
 			<% @types.each do |s| %>
 			  <hu>| <%= s.ad_type %></hu>  
+			  
 			  <% if can? :manage, s %> 
 			    <p>
-			    <%= link_to 'edit', edit_type_path(s) %> | 
-			    <%= link_to 'destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %>
+			  	  <%= link_to 'edit', edit_type_path(s) %> | 
+			  	  <%= link_to 'destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %>
 			    </p>   
 			  <% end %>  
-			<%end%>
-
-			<button type="button" class="btn btn-primary btn-lg">
-				<%= link_to 'New type', new_type_path %>
-			</button>		
+			<%end%>			
 		</div>
 	</div>
 </div>
