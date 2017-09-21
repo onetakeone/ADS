@@ -1,16 +1,20 @@
-<h2>Add advertisment type</h2>
-<% @types.each do |s| %>
-	<%= s.ad_type %>	  
-  <% if can? :manage, s %> 
-    <p>
-    <%= link_to 'Edit', edit_type_path(s) %> | 
-    <%= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </p>   
-  <% end %>  
-<%end%>
+<hh>MANAGE AD TYPES</hh>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+			<% @types.each do |s| %>
+			  <hu>| <%= s.ad_type %></hu>  
+			  <% if can? :manage, s %> 
+			    <p>
+			    <%= link_to 'edit', edit_type_path(s) %> | 
+			    <%= link_to 'destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %>
+			    </p>   
+			  <% end %>  
+			<%end%>
 
-
-
-<p>
-<%= link_to 'new type', new_type_path %>
-</p>
+			<button type="button" class="btn btn-primary btn-lg">
+				<%= link_to 'New type', new_type_path %>
+			</button>		
+		</div>
+	</div>
+</div>

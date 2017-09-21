@@ -1,12 +1,13 @@
-<%= form_for @type do |form| %>
-  
-  <div class="field">
-    <%= form.label :type %>
-    <%= form.text_area :ad_type, id: :type_ad_type %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
-<% end %>
+<div class="container">
+  <div class="row justify-content-md-center">
+		<div class="col-md-auto">
+			<%= simple_form_for @type do |f| %> 
+			  <div class="form-group">
+			  	<%= f.input :ad_type, label: "type:" %>
+			  </div>
+			 	<%= f.submit 'create', :class => 'btn btn-primary btn-lg' %>	  
+			<% end %>
+			<%= link_to '| Back', types_path %>
+		</div>
+	</div>
+</div>

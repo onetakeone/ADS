@@ -1,12 +1,16 @@
-<h2>edit <%= @user.username %> role</h2>
+<hh>EDIT <%= @user.username.upcase %> ROLE</hh>
+<div class="container">
+ 	<div class="row justify-content-md-center">
+ 		<div class="col-md-auto">
+   		<%= simple_form_for :user do |f| %>
+				<div class="form-group">
+				  <%= f.input :role, label: "Role:", required: false, collection: User.role.values %>
+				</div>
 
-<%= form_for :user do |f| %>
-	<div class="field">
-	  <%= f.select :role, User.role.values %>
+				<div class="actions">
+			  	<%= f.submit "Set", :class => 'btn btn-primary btn-lg' %>
+			  </div>
+			<% end %>
+		</div>
 	</div>
-
-	<div class="actions">
-    <%= f.submit "set role" %>
-  </div>
-
-<% end %>
+</div>

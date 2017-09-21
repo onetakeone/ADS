@@ -1,7 +1,7 @@
+<hh>ADVERTISEMENTS</hh>
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-auto">
-      <h1>Advertisements</h1>
       <p id="notice" class="mb-5"><%= notice %></p>
     </div>
  </div>
@@ -18,13 +18,13 @@
 
         <p>
         <% if can? :read, ad %>
-          <%= link_to 'Show', ad %> | 
+          <%= link_to 'show', ad %> | 
         <% end%>
         <% if can? :update, ad %> 
-          <%= link_to 'Edit', edit_ad_path(ad) %> |
+          <%= link_to 'edit', edit_ad_path(ad) %> |
         <% end %> 
         <% if can? :destroy, ad %>
-          <%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
         </p>  
       </div>
