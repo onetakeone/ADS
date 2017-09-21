@@ -2,7 +2,7 @@ class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ads = Ad.all
+    @ads = Ad.all.page(params[:page])
     @users = User.all
     @types = Type.all
     @ad1 = @ads.first
