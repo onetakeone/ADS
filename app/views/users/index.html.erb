@@ -13,8 +13,9 @@
 					</button>
 	  		<%end%> 
 	  		<% u.ads.each do |a| %>
-		  		<p><%= link_to "#{a.state}", edit_ad_path(a) %> </p>
-		  		<p><b><%= a.title %></b></p>
+	  			<p>
+	  				<b><%= a.title %></b> | <u><%= link_to "#{a.state}", edit_ad_path(a) %></u>
+	  			</p>		  		
 			  <%end%>			
 		  </div>
 	  <%end%>

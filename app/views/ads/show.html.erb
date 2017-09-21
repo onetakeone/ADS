@@ -5,7 +5,7 @@
 			<h1><%= @ad.title %></h1>
 			<p class="mb-4"><%= @ad.body %></p>
 			<img src=<%= @ad.image %>>
-			<% if can? :manage, @ad %><%= link_to 'Edit', edit_ad_path(@ad) %><% end %><%= link_to '| Back', ads_path %>
+			<% if can? :manage, @ad %><%= link_to 'Edit', edit_ad_path(@ad) %><% end %><%= link_to '| Back', :back %>
 		</div>
 	</div>
 </div>
