@@ -20,10 +20,10 @@
             <a class="dropdown-item">
         		  <div id="nav"><%= link_to 'adverts', ads_path %></div>
             </a>
-            <% if can? :create, @ad1 %>
-            <a class="dropdown-item">
-              <div id="nav"><%= link_to 'create ad', new_ad_path %></div>
-            </a>
+            <% if can? :create, Ad %>
+              <a class="dropdown-item">
+                <div id="nav"><%= link_to 'create ad', new_ad_path %></div>
+              </a>
             <% end %>
           </div> 
         </li>

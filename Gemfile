@@ -8,7 +8,8 @@ end
 gem 'devise'
 gem 'cancan'
 gem 'enumerize'
-gem 'simplest_status'
+#gem 'state_machine'
+gem 'state_machines-activerecord'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'simple_form'
@@ -17,6 +18,7 @@ gem 'bootstrap-sass', '~> 3.3.0'
 gem 'jquery-rails'
 gem 'sprockets-rails'
 gem 'popper_js', '~> 1.12.3'
+
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '>= 3.1.2', platforms: :ruby #works incorrect with devise, needs to be reinstalled after bundle (gem install bcrypt --platform=ruby)

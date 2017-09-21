@@ -1,29 +1,37 @@
 <%= simple_form_for @ad do |f| %>
-  <div class="form-group">
-    <%= f.input :type_id, collection: @options %> 
-    <%= f.input :title, label: 'Title', error: 'Title is mandatory, please specify one', required: false, id: :post_title %>
-    <%= f.input :body, as: :text, label: 'Advert', error: 'Please write down you advertisement', required: false, id: :post_body %>    
-  </div>
-      
-  <div class="field">
-    <%= image_tag(@ad.image_url) if @ad.image? %> 
-    <%= f.input :image, label: 'Icon' %>
-    <%= f.hidden_field :image_cache %>
-  </div> 
+  <% if can? :edit, Ad %>
+    <div class="form-group">
+      <%= f.input :type_id, collection: @options, label: 'Type', error: 'type error', required: false %> 
+      <%= f.input :title, label: 'Title', error: 'Title is mandatory, please specify one', required: false %>
+      <%= f.input :body, as: :text, label: 'Advert', error: 'Please write down you advertisement', required: false %>    
+    </div>
+        
+    <div class="field">
+      <%= image_tag(@ad.image_url) if @ad.image? %> 
+      <%= f.input :image, label: 'Icon' %>
+      <%= f.hidden_field :image_cache %>
+    </div> 
 
-  <div id="tasks">
-    <%= f.simple_fields_for :pictures do |form| %>
-      <%= render 'picture_fields', :f => form %>
-    <% end %>    
-  </div>
+    <div id="tasks">
+      <%= f.simple_fields_for :pictures do |form| %>
+        <%= render 'picture_fields', :f => form %>
+      <% end %>    
+    </div>
+    
+    <button type="button" class="btn btn-secondary btn-sm">
+      <%= link_to_add_association 'add picture', f, :pictures %>
+    </button> 
+  <% end %>
   
-  <button type="button" class="btn btn-secondary btn-sm">
-    <%= link_to_add_association 'add picture', f, :pictures %>
-  </button>
-  
+  <% unless @ad.new_record? %>
+    <div class="field">
+      <%= f.input :state, collection: @ad.state_paths.to_states  %>
+    </div>
+  <% end %>
+
   <p class="mb-4">
     <div class="actions">
-      <%= f.submit 'create ad', :class => 'btn btn-primary btn-lg' %>
+      <%= f.submit 'done', :class => 'btn btn-primary btn-lg' %>
     </div>
   </p>
 <% end %>

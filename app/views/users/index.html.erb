@@ -1,18 +1,22 @@
 <hh>MANAGE USERS</hh>
 <div class="container">
  	<div class="row justify-content-md-center">
-  		<% @users.each do |u| %>
-    		<div class="col-md-auto">
-    		<p class="mb-4">			
-				<h3>user:</h3> <hu>| <%= u.username.capitalize %></hu>
-				<h3>role:</h3> <hu>| <i><%= u.role %></i></hu>
-				</p>
+  	<% @users.each do |u| %>
+    	<div class="col-md-auto">
+	   		<p class="mb-4">			
+					<h3>user:</h3> <hu>| <%= u.username.capitalize %></hu>
+					<h3>role:</h3> <hu>| <i><%= u.role %></i></hu>
+			  </p><br>
 				<% if can? :edit, u %>
-					<br><button type="button" class="btn btn-primary btn-sm">
+					<button type="button" class="btn btn-primary btn-sm">
 						<%= link_to 'Change role', controller: :users, action: :edit, id: u.id %>
 					</button>
-				<% end %> 			
-			</div>
-		<% end %>
+	  		<%end%> 
+	  		<% u.ads.each do |a| %>
+		  		<p><%= link_to "#{a.state}", edit_ad_path(a) %> </p>
+		  		<p><b><%= a.title %></b></p>
+			  <%end%>			
+		  </div>
+	  <%end%>
 	</div>
 </div>

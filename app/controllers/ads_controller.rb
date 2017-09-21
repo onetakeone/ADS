@@ -23,11 +23,18 @@ class AdsController < ApplicationController
   end
 
   def edit
+    @ad = Ad.find(params[:id])
+    @types = Type.all
+    @options = []
+    @types.each do |t|
+      @options << [t.ad_type, t.id]
+    end
   end
 
   def create
     @user = current_user
-    @ad = @user.ads.new(ad_params)    
+    @ad = @user.ads.new(ad_params)  
+
     @types = Type.all
     @options = []
     @types.each do |t|
@@ -71,6 +78,6 @@ class AdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ad_params
-      params.require(:ad).permit(:title, :body, :type_id, :image, pictures_attributes: [:id, :image_src, :done, :_destroy])
+      params.require(:ad).permit(:title,:body,:type_id,:image,:state,pictures_attributes: [:id, :image_src, :done, :_destroy])
     end
 end

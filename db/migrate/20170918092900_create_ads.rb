@@ -3,10 +3,11 @@ class CreateAds < ActiveRecord::Migration[5.1]
     create_table :ads do |t|
       t.integer :user_id
       t.integer :type_id
-      t.integer :status, :null => false, :default => 0 
+      t.string :state, :access_state 
       t.string :title
       t.text :body
       t.string :image      
+      
       t.timestamps
     end
   end

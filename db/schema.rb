@@ -15,7 +15,8 @@ ActiveRecord::Schema.define(version: 20170920093342) do
   create_table "ads", force: :cascade do |t|
     t.integer "user_id"
     t.integer "type_id"
-    t.integer "status", default: 0, null: false
+    t.string "state"
+    t.string "access_state"
     t.string "title"
     t.text "body"
     t.string "image"
