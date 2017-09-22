@@ -60,10 +60,22 @@
             <% end %>
           </div>
         </li>
+<% if !current_user.nil? %>
+        <li class="nav-item dropdown"> 
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username if !current_user.nil? %></a>
+          <div class="dropdown-menu">
 
-        <li class="nav-item">
-         <a href="<%= edit_user_registration_path %>"><div id="nav"><%= current_user.username if !current_user.nil? %></div></a>
-        </li>
+            <a class="dropdown-item">
+              <div id="nav"><%= link_to 'profile', edit_user_registration_path %></div>
+            </a>
+          
+            <a class="dropdown-item">
+              <div id="nav"><%= link_to 'ads', user_ads_path(current_user) %></div>
+            </a>
+           
+          </div>
+        </li>  
+         <%end%>      
       </ul>    
   	</header>
 

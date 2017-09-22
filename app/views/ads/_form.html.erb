@@ -25,7 +25,7 @@
   
   <% unless @ad.new_record? %>
     <div class="field">
-      <%= f.input :state, collection: @ad.state_paths.to_states  %>
+      <%= f.input :state, collection: @ad.state_paths(:from => :draft, :to => :new).to_states  %>
     </div>
   <% end %>
 

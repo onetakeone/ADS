@@ -1,16 +1,7 @@
-<hh>ADVERTISEMENTS</hh>
-<div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col-md-auto">
-      <p id="notice" class="mb-5"><%= notice %></p>
-    </div>
- </div>
-</div>
-
 <div class="container">
   <div class="row justify-content-md-center">
     <% @ads.each do |ad| %>
-      <% if ad.state == 'published' %>
+      
         <div class="col-md-auto">
           <table>
             <tr><td>  
@@ -25,9 +16,7 @@
             <tr><td>
               <%= ad.body %>
             </td></tr>
-            <tr><td>
-              <p><i>by: <b><%= @users.find(ad.user_id).username %></b> </i> </p> 
-            </td></tr>
+          
             <tr><td>
               <% if can? :read, ad %>
                 <%= link_to 'show', ad %> | 
@@ -41,11 +30,7 @@
             </td></tr>                   
           </table>  
         </div>
-      <%end%>
+     
     <%end%>
   </div>
 </div>
-
-<%= paginate @ads, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination  justify-content-sm-center" %>
-
-

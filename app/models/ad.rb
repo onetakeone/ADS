@@ -1,5 +1,5 @@
 class Ad < ApplicationRecord
-  paginates_per 5
+  paginates_per 10
   
   validates :title, presence: true, length: { maximum: 150}
   validates :body, presence: true, length: { maximum: 4000}
@@ -13,16 +13,10 @@ class Ad < ApplicationRecord
   accepts_nested_attributes_for :pictures, reject_if: :all_blank, allow_destroy: true
      
   state_machine :state, :initial => :draft do
-    state :create
     event :create do
       transition :draft => :new
     end  
-  end
-
-  state_machine :state, :initial => :new do
-    state :deny
-    state :delete
-    state :verify  
+  
     event :deny do
       transition :new => :denied
     end  
@@ -31,30 +25,18 @@ class Ad < ApplicationRecord
       transition :new => :verified
     end 
 
-     event :delete do
-      transition :new => :deleted
+    event :delete do
+      transition :new => :deleted, :verfied => :deleted
     end
-  end
-
-  state_machine :state, :initial => :verified do
-    state :publish
-    state :delete
-    state :archieve    
+  
     event :publish do
       transition :verified => :published
     end 
-
-    event :delete do
-      transition :verified => :deleted
-    end
-  
+     
     event :archieve do
       transition :published => :archieved
     end 
-  end
-
-  state_machine :state, :initial => :archieved do
-    state :resurrect
+  
     event :ressurect do
       transition :archieved => :draft
     end

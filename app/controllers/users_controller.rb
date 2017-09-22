@@ -12,6 +12,12 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def ads
+    @types = Type.all
+    @user = User.find(params[:id])
+    @ads = @user.ads.all
+  end
+
   def create
     @user = User.new(user_params)
     @user.save
