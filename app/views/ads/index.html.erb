@@ -9,8 +9,7 @@
 
 <div class="container">
   <div class="row justify-content-md-center">
-    <% @ads.each do |ad| %>
-      <% if ad.state == 'published' %>
+    <% @ads.each do |ad| %>     
         <div class="col-md-auto">
           <table>
             <tr><td>  
@@ -40,8 +39,7 @@
               <% end %>
             </td></tr>                   
           </table>  
-        </div>
-      <%end%>
+        </div>      
     <%end%>
   </div>
 </div>

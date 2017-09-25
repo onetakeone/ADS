@@ -1,23 +1,21 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
+  before_action :set_types, only: [:show, :edit, :new, :index, :create]
 
   def index
-    @ads = Ad.order(:state).page(params[:page])
-    @users = User.all
-    @types = Type.all
+    @ads = Ad.where(state: 'published').page(params[:page])
+    @users = User.all    
     @ad1 = @ads.first
   end
 
   def show
-    @ad = Ad.find(params[:id])
-    @types = Type.all
+    @ad = Ad.find(params[:id])    
     @users = User.all
   end
 
   def new
     @user = current_user
     @ad = @user.ads.new
-    @types = Type.all
     @options = []
     @types.each do |t|
       @options << [t.ad_type, t.id]
@@ -25,8 +23,7 @@ class AdsController < ApplicationController
   end
 
   def edit
-    @ad = Ad.find(params[:id])
-    @types = Type.all
+    @ad = Ad.find(params[:id])   
     @options = []
     @types.each do |t|
       @options << [t.ad_type, t.id]
@@ -36,8 +33,6 @@ class AdsController < ApplicationController
   def create
     @user = current_user
     @ad = @user.ads.new(ad_params)  
-
-    @types = Type.all
     @options = []
     @types.each do |t|
       @options << [t.ad_type, t.id]
@@ -73,9 +68,12 @@ class AdsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_ad
       @ad = Ad.find(params[:id])
+    end
+
+    def set_types
+      @types = Type.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
