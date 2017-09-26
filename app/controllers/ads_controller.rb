@@ -1,4 +1,6 @@
 class AdsController < ApplicationController
+ 
+  
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
   before_action :set_types, only: [:show, :edit, :new, :index, :create]
 
@@ -23,7 +25,11 @@ class AdsController < ApplicationController
   end
 
   def edit
-    @ad = Ad.find(params[:id])   
+    @ad = Ad.find(params[:id])
+    @states = []   
+    @ad.state_transitions.each do |t|
+      @states << t.to_name
+    end  
     @options = []
     @types.each do |t|
       @options << [t.ad_type, t.id]

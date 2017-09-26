@@ -24,31 +24,10 @@
   <%end%>
   
   <% unless @ad.new_record? %>
-    <% if @ad.state == 'draft' %>
       <div class="field">
-        <%= f.input :state, collection: @ad.state_paths(:from => :draft, :to => :new, :from => :draft, :to => :deleted).to_states  %>
+        <%= f.input :state, collection: @states %>
       </div>
-    <%end%>
-    <% if @ad.state == 'new' %>
-      <div class="field">
-        <%= f.input :state, collection: @ad.state_paths(:from => :new, :to => :verified, :from => :new, :to => :denied, :from => :new, :to => :deleted).to_states  %>
-      </div>
-    <%end%>
-    <% if @ad.state == 'verified' %>
-      <div class="field">
-        <%= f.input :state, collection: @ad.state_paths(:from => :verified, :to => :published, :from => :verified, :to => :deleted).to_states  %>
-      </div>
-    <%end%>
-    <% if @ad.state == 'published' %>
-      <div class="field">
-        <%= f.input :state, collection: @ad.state_paths(:from => :published, :to => :deleted, :from => :published, :to => :archieved).to_states  %>
-      </div>
-    <%end%>
-    <% if @ad.state == 'archieved' %>
-      <div class="field">
-        <%= f.input :state, collection: @ad.state_paths(:from => :archieved, :to => :draft).to_states  %>
-      </div>
-    <%end%>
+  
   <%end%>
 
   <p class="mb-4">
