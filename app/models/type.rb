@@ -1,3 +1,3 @@
 class Type < ApplicationRecord
-  has_many :ads    
-end
+  has_many :ads   
+end 

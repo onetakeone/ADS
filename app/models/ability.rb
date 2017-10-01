@@ -7,6 +7,7 @@ class Ability
       can :manage, User
       can :destroy, Ad
       can :read, Ad
+      cannot :edit, Ad
       can :manage, Type     
     elsif user.role.user?
       can :create, Ad

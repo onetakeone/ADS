@@ -1,15 +1,15 @@
 class Ad < ApplicationRecord
   paginates_per 10
   
-  validates :title, presence: true, length: { maximum: 150}
-  validates :body, presence: true, length: { maximum: 4000}
+  validates :title, presence: true, length: { maximum: 150} 
+  validates :body, presence: true, length: { maximum: 4000} 
   
   mount_uploader :image, ImageUploader
 
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true 
   belongs_to :type 
 
-  has_many :pictures, inverse_of: :ad, dependent: :destroy
+  has_many :pictures, inverse_of: :ad, dependent: :destroy 
   accepts_nested_attributes_for :pictures, reject_if: :all_blank, allow_destroy: true
      
   state_machine :state, :initial => :draft do
@@ -25,8 +25,8 @@ class Ad < ApplicationRecord
       transition :new => :verified
     end 
 
-    event :delete do
-      transition :new => :deleted, :verfied => :deleted
+    event :kick do
+      transition :new => :deleted, :verified => :deleted
     end
   
     event :publish do
@@ -37,7 +37,7 @@ class Ad < ApplicationRecord
       transition :published => :archieved
     end 
   
-    event :ressurect do
+    event :resurrect do
       transition :archieved => :draft
     end
   end
