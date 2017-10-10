@@ -1,0 +1,6 @@
+div class='nested-fields'
+	= f.input :image_src, label: 'attach image' 
+	= f.hidden_field :image_src_cache 
+	p class="mb-4"
+		button type="button" class="btn btn-warning btn-sm"
+			= link_to_remove_association "remove picture", f    	

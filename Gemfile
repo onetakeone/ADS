@@ -20,6 +20,8 @@ gem 'jquery-rails'
 gem 'sprockets-rails'
 gem 'popper_js', '~> 1.12.3'
 
+gem 'slim'
+
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '>= 3.1.2', platforms: :ruby #works incorrect with devise, needs to be reinstalled after bundle (gem install bcrypt --platform=ruby)

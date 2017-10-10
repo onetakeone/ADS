@@ -15,8 +15,7 @@ class Ability
       can :update, Ad
     else
       can :read, Ad
-    end
- 
+    end 
 
     # Define abilities for the passed in user here. For example:
     #

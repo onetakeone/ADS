@@ -1,0 +1,13 @@
+hh MANAGE AD TYPES | 
+button type="button" class="btn btn-primary btn-lg" = link_to 'NEW', new_type_path
+
+div class="container"
+	div class="row justify-content-md-center"
+		div class="col-md-auto"
+			- @types.each do |s| 
+				hu
+					= s.ad_type 
+				- if can? :manage, s 
+					p
+						= link_to 'edit |', edit_type_path(s)  
+						= link_to ' destroy', s, method: :delete, data: { confirm: 'Are you sure?' }

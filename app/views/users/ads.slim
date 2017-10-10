@@ -1,0 +1,29 @@
+hh MY ADS
+div class="container"
+  div class="row justify-content-md-center"
+    - @ads.each do |ad| 
+      div class="col-md-auto"
+        <table>
+          tr 
+            td  
+              = ad.state.upcase 
+          tr
+            td
+              h2 | = @types.find(ad.type_id).ad_type 
+          tr
+            td
+              h3
+                b = ad.title 
+          tr
+            td
+              = ad.body 
+          <tr><td>
+            - if can? :read, ad 
+              = link_to 'show |', ad 
+            - if ad.state == 'draft' || ad.state == 'archieved' 
+              = link_to ' edit |', edit_ad_path(ad)
+            - if can? :destroy, ad 
+              - if ad.state == 'new' || ad.state == 'new' || ad.state == 'published' 
+                = link_to 'destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } 
+          </td></tr>
+        </table>
