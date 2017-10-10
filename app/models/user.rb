@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true 
   validates :email, presence: true, uniqueness: true 
   
-  has_many :ads 
+  has_many :ads, dependent: :destroy 
 
   extend Enumerize
   enumerize :role, in: [:guest, :user, :admin], default: :guest  
