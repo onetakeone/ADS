@@ -24,7 +24,7 @@ div class="container"
               td
                 p 
                   i by: 
-                  b = @users.find(ad.user_id).username             
+                  b = ad.user.username            
             <tr><td>           
               - if can? :read, ad 
                  = link_to 'show |', ad               
