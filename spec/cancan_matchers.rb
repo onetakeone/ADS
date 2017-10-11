@@ -41,7 +41,6 @@ RSpec::Matchers.define :have_abilities do |actions, obj|
   end
 end
 
-
 RSpec::Matchers.define :not_have_abilities do |actions, obj|
   include HaveAbilitiesMixin
 
@@ -75,7 +74,6 @@ RSpec::Matchers.define :not_have_abilities do |actions, obj|
     )
   end
 end
-
 
 module HaveAbilitiesMixin
   def build_expected_hash(actions, default_expectation:)

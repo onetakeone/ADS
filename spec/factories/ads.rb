@@ -1,4 +1,4 @@
-FactoryGirl.define do 
+FactoryGirl.define do
   factory :ad do
     title '1'
     body '1'

@@ -1,5 +1,7 @@
 require 'rails_helper'
 include ActiveModel::Validations
+# it { is_expected.to transition_from :archieved, to_state: :draft, on_event: :ressurect }
+# why doesn't work?
 
 describe Ad do
   before :each do
@@ -8,24 +10,24 @@ describe Ad do
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:title)}
-    it { should validate_presence_of(:body)}
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:body) }
     it { should validate_length_of(:title).is_at_most(150) }
     it { should validate_length_of(:body).is_at_most(4000) }
   end
 
-  describe "associations" do
+  describe 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:type) }
     it { should have_many(:pictures) }
   end
 
-  describe 'states' do      
+  describe 'states' do
     it { should have_states :draft, :new, :denied, :verified, :deleted, :archieved, :published }
 
     describe 'Draft state events' do
       it { should be_draft }
-      it { should handle_events :create, when: :draft }      
+      it { should handle_events :create, when: :draft }
       it 'should change to :new on :create' do
         @ad.create!
         @ad.should be_new
@@ -39,15 +41,15 @@ describe Ad do
         @ad.deny!
         @ad.should be_denied
       end
-   
+
       it { should handle_events :verify, when: :new }
       it 'should change to :verified on :verify' do
         @ad.state = 'new'
         @ad.verify!
         @ad.should be_verified
       end
-   
-      it { should handle_events :kick, when: :new }    
+
+      it { should handle_events :kick, when: :new }
       it 'should change to :deleted on :kick' do
         @ad.state = 'new'
         @ad.kick!
@@ -56,7 +58,7 @@ describe Ad do
     end
 
     describe 'Verified state events' do
-      it { should handle_events :publish, when: :verified } 
+      it { should handle_events :publish, when: :verified }
       it 'should change to :published on :publish' do
         @ad.state = 'verified'
         @ad.publish!
@@ -87,8 +89,6 @@ describe Ad do
         @ad.resurrect!
         @ad.should be_draft
       end
-    end   
+    end
   end
 end
-
-# it { is_expected.to transition_from :archieved, to_state: :draft, on_event: :ressurect } - why doesn't work ?   

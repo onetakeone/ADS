@@ -1,5 +1,4 @@
 class TypesController < ApplicationController
-  
   def index
     @types = Type.all
     authorize! :edit, Type
@@ -17,7 +16,7 @@ class TypesController < ApplicationController
   def edit
     @type = Type.find(params[:id])
     authorize! :edit, Type
-  end 
+  end
 
   def create
     @type = Type.new(params_type)
@@ -29,12 +28,13 @@ class TypesController < ApplicationController
     @type = Type.find(params[:id])
     @type.update(params_type)
     redirect_to types_path
-  end   
+  end
 
-  def destroy
+  def destroy 
   end
 
   private
+
   def params_type
     params.require(:type).permit(:ad_type)
   end
