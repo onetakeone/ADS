@@ -1,7 +1,8 @@
 class TypesController < ApplicationController
-
+  
   def index
     @types = Type.all
+    authorize! :edit, Type
   end
 
   def show
@@ -10,10 +11,12 @@ class TypesController < ApplicationController
 
   def new
     @type = Type.new
+    authorize! :edit, Type
   end
 
   def edit
     @type = Type.find(params[:id])
+    authorize! :edit, Type
   end 
 
   def create

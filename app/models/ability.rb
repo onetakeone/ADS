@@ -5,17 +5,21 @@ class Ability
     user ||= User.new 
     if user.role.admin?
       can :manage, User
-      can :destroy, Ad
+      can :manage, Type  
       can :read, Ad
-      cannot :edit, Ad
-      can :manage, Type     
+      can :destroy, Ad
+      can :edit, Ad
     elsif user.role.user?
-      can :create, Ad
+      can :create, Ad, :user_id => user.id
       can :read, Ad 
-      can :update, Ad
+      can :update, Ad, :user_id => user.id
+      can :destroy, Ad, :user_id => user.id, :state => ['published', 'new', 'draft']
+      cannot :edit, Type
     else
       can :read, Ad
+      cannot :edit, Ad
     end 
+    
 
     # Define abilities for the passed in user here. For example:
     #

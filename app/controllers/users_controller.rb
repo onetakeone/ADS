@@ -2,20 +2,24 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.page(params[:page])
+    authorize! :manage, User
   end
 
   def edit
     @user = User.find(params[:id])
+    authorize! :manage, User
   end
 
   def new
     @user = User.new
+    authorize! :manage, User
   end
 
   def ads
     @types = Type.all
     @user = User.find(params[:id])
     @ads = @user.ads.all
+    authorize! :create, Ad
   end
 
   def create

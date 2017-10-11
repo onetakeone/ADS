@@ -28,9 +28,8 @@ div class="container"
 							td
 								img src="#{pic.image_src}"
 					tr
-						td
-							- if can? :manage, @ad
-								= link_to 'Edit', edit_ad_path(@ad)
+						td					
+							= link_to 'Edit', edit_ad_path(@ad) if can? :manage, @ad
 						td
 							= link_to "| Back", ads_path
 

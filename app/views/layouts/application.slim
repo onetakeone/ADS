@@ -37,11 +37,9 @@ html
               a class="dropdown-item"
                 div id="nav"
                   = link_to 'users', users_path 
-                
-              - if can? :manage, Type
-                a class="dropdown-item"
-                  div id="nav"
-                    = link_to "types", types_path              
+              a class="dropdown-item"
+                div id="nav"
+                  = link_to "types", types_path if can? :manage, Type              
 
         li class="nav-item dropdown"
           a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" session
@@ -69,6 +67,8 @@ html
                   = link_to 'profile', edit_user_registration_path
               a class="dropdown-item"
                 div id="nav"
-                  = link_to 'ads', user_ads_path(current_user) 
-  = yield   
+                  = link_to 'ads', user_ads_path(current_user) if can? :create, Ad
+    p id="notice"
+      = notice                  
+    = yield   
 
