@@ -6,20 +6,31 @@ hu
 	b = @users.find(@ad.user_id).username
 
 div class="container"
-	div class="row justify-content-md-center"
+	div class="row justify-content-md-left"
 		div class="col-md-auto"
-			p id="notice"
-				= notice
-			h2
-				= @ad.state.upcase
-			h1
-				b
-					= @ad.title
-			p class="mb-4"
-				= @ad.body
-			p
-				img src="#{@ad.image}"
-			- if can? :manage, @ad
-				= link_to 'Edit', edit_ad_path(@ad)
-			= link_to '| Back', :back 
-	
+			table class="table table-sm table"
+				tbody
+					tr
+						td
+							img src="#{@ad.image}"
+					tr
+						td
+							h2 = @ad.state.upcase
+					tr
+						td 						
+							h1 
+								b = @ad.title
+					tr 
+						td
+							= @ad.body
+					tr
+						- @ad.pictures.each do |pic|
+							td
+								img src="#{pic.image_src}"
+					tr
+						td
+							- if can? :manage, @ad
+								= link_to 'Edit', edit_ad_path(@ad)
+						td
+							= link_to "| Back", ads_path
+

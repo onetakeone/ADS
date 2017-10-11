@@ -6,35 +6,40 @@ div class="container"
         = notice 
 
 div class="container"
-  div class="row justify-content-md-center"
-    - @ads.each do |ad|      
-        div class="col-md-auto"
-          <table>
-            tr 
-              td = ad.state.upcase             
-            tr 
-              td
-                h2  = @types.find(ad.type_id).ad_type        
-            tr
-              td
-                h3 b = ad.title             
-            tr
-              td = ad.body             
-            tr 
-              td
-                p 
-                  i by: 
-                  b = ad.user.username            
-            <tr><td>           
-              - if can? :read, ad 
-                 = link_to 'show |', ad               
-              - if can? :update, ad  
-                 = link_to ' edit |', edit_ad_path(ad)                 
-              - if can? :destroy, ad 
-                 = link_to ' destroy ', ad, method: :delete, data: { confirm: 'Are you sure?' } 
-            </td></tr> 
-          </table>
-       
+  - @ads.each do |ad|   
+    div class="row justify-content-md-left"
+      div class="col-md-auto"
+        <table>
+          tr
+            td 
+              img src="#{ad.image}"
+            td
+              table
+                tr 
+                  td = ad.state.upcase             
+                tr 
+                  td
+                    h2  = @types.find(ad.type_id).ad_type        
+                tr
+                  td
+                    h3 b = ad.title             
+                tr
+                  td = ad.body             
+                tr 
+                  td
+                    p 
+                      i by: 
+                      b = ad.user.username            
+                <tr><td>           
+                  - if can? :read, ad 
+                     = link_to 'show |', ad               
+                  - if can? :update, ad  
+                     = link_to ' edit |', edit_ad_path(ad)                 
+                  - if can? :destroy, ad 
+                     = link_to ' destroy ', ad, method: :delete, data: { confirm: 'Are you sure?' } 
+                </td></tr> 
+        </table>
+     
 = paginate @ads, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination  justify-content-sm-center" 
 
 

@@ -1,6 +1,4 @@
-class AdsController < ApplicationController
- 
-  
+class AdsController < ApplicationController  
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
   before_action :set_types, only: [:show, :edit, :new, :index, :create]
 
@@ -8,22 +6,17 @@ class AdsController < ApplicationController
     @ads = Ad.where(state: 'published').page(params[:page])  
   end
 
-  def show
-    @ad = Ad.find(params[:id])    
+  def show     
     @users = User.all
   end
 
   def new
     @user = current_user
     @ad = @user.ads.new
-    @options = []
-    @types.each do |t|
-      @options << [t.ad_type, t.id]
-    end
+    @type = Type.pluck(:ad_type)
   end
 
   def edit
-    @ad = Ad.find(params[:id])
     @states = []   
     @ad.state_transitions.each do |t|
       @states << t.to_name
@@ -80,7 +73,6 @@ class AdsController < ApplicationController
       @types = Type.all
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def ad_params
       params.require(:ad).permit(:title,:body,:type_id,:image,:state,pictures_attributes: [:id, :image_src, :done, :_destroy])
     end
