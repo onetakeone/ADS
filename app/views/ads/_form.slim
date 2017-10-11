@@ -1,7 +1,7 @@
 = simple_form_for @ad do |f| 
   - if can? :edit, Ad 
     div class="form-group"
-      = f.input :type_id, collection: @type, label: 'Type', error: 'Type error', required: false 
+      = f.input :type_id, collection: @options, label: 'Type', error: 'Type error', required: false 
       = f.input :title, label: 'Title', error: 'Title is mandatory, please specify one', required: false 
       = f.input :body, as: :text, label: 'Advert', error: 'Please write down you advertisement', required: false     
         

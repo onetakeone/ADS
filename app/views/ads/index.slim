@@ -1,15 +1,9 @@
 hh ADVERTISEMENTS
 div class="container"
-  div class="row justify-content-md-center"
-    div class="col-md-auto"
-      p id="notice" class="mb-5"
-        = notice 
-
-div class="container"
   - @ads.each do |ad|   
     div class="row justify-content-md-left"
       div class="col-md-auto"
-        <table>
+        table
           tr
             td 
               img src="#{ad.image}"
@@ -19,7 +13,7 @@ div class="container"
                   td = ad.state.upcase             
                 tr 
                   td
-                    h2  = @types.find(ad.type_id).ad_type        
+                    h2  = ad.type.ad_type        
                 tr
                   td
                     h3 b = ad.title             
@@ -30,15 +24,11 @@ div class="container"
                     p 
                       i by: 
                       b = ad.user.username            
-                <tr><td>           
-                  - if can? :read, ad 
-                     = link_to 'show |', ad               
-                  - if can? :update, ad  
-                     = link_to ' edit |', edit_ad_path(ad)                 
-                  - if can? :destroy, ad 
-                     = link_to ' destroy ', ad, method: :delete, data: { confirm: 'Are you sure?' } 
-                </td></tr> 
-        </table>
+                tr
+                  td           
+                    = link_to 'show |', ad if can? :read, ad               
+                    = link_to ' edit |', edit_ad_path(ad) if can? :update, ad                
+                    = link_to ' destroy ', ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 
      
 = paginate @ads, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination  justify-content-sm-center" 
 

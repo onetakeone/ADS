@@ -34,7 +34,6 @@ describe Ad do
 
     describe 'New state events' do
       it { should handle_events :deny, when: :new }
-
       it 'should change to :denied on :deny' do
         @ad.state = 'new'
         @ad.deny!
