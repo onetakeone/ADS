@@ -1,0 +1,26 @@
+table.table-sm
+  tr
+    td 
+      img src="#{ad.image}"
+    td
+      table
+        tr 
+          td = ad.state.upcase             
+        tr 
+          td
+            h2  = ad.type.ad_type        
+        tr
+          td
+            h3 b = ad.title             
+        tr
+          td = ad.body             
+        tr 
+          td
+            p 
+              i by: 
+              b = ad.user.username            
+        tr
+          td           
+            = link_to 'show |', ad if can? :read, ad               
+            = link_to ' edit |', edit_ad_path(ad) if can? :update, ad                
+            = link_to ' destroy ', ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 

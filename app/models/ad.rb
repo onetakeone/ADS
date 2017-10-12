@@ -1,5 +1,5 @@
 class Ad < ApplicationRecord
-  paginates_per 5
+  paginates_per 4
   
   validates :title, presence: true, length: { maximum: 150}
   validates :body, presence: true, length: { maximum: 4000}

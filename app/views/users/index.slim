@@ -1,25 +1,29 @@
-hh MANAGE USERS | 
-button class="btn btn-primary btn-lg" = link_to 'CREATE', users_new_path 
-div class="container"
-	div class="row justify-content-md-center"
-		- @users.each do |u| 
-			div class="col-md-auto"
-				p class="mb-4"		
-					h3 user:
-					hu = u.username.capitalize 
-					h3 role:
-					hu
-						i = u.role 
+hh | MANAGE USERS
+br
+button class='btn btn-primary btn-lg' = link_to 'CREATE', users_new_path
+hr
+- @users.each do |u|
+	table.table-sm
+		tr
+			td
+				h1
+					b = u.username.capitalize
+				b role:
+				i = u.role
 				br
-				- if can? :edit, u 
-					button type="button" class="btn btn-secondary btn-sm"
-						= link_to 'EDIT', controller: :users, action: :edit, id: u.id 
-	
+				- if can? :edit, u
+					button type="button" class='btn btn-secondary btn-sm'
+						= link_to 'EDIT', controller: :users, action: :edit, id: u.id
+			td
 				table id="ads"
-					- u.ads.each do |a| 
-						tr
-							td	  		
+					tr
+						- u.ads.each do |a|
+							td
 								b = a.title
-								u = link_to "#{a.state}", edit_ad_path(a) 
+					tr
+						- u.ads.each do |a|
+							td
+								u = link_to "#{a.state}", edit_ad_path(a)
+	hr
 
-= paginate @users, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination  justify-content-sm-center"
+= paginate @users, theme: 'twitter-bootstrap-3', pagination_class: 'pagination justify-content-sm-center'

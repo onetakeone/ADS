@@ -1,26 +1,28 @@
-hh MY ADS
-div class="container"
-  div class="row justify-content-md-center"
-    - @ads.each do |ad| 
-      div class="col-md-auto"
+hh | MY ADS
+- @ads.each do |ad|       
+  table.table-sm
+    tr
+      td 
+        img src="#{ad.image}"
+      td
         table
           tr 
             td  
-              = ad.state.upcase 
-          tr
-            td
-              h2 | = @types.find(ad.type_id).ad_type 
-          tr
-            td
-              h3
+              h1 = ad.state.upcase 
+            tr
+              td
+                = ad.type.ad_type
+            tr
+              td
                 b = ad.title 
-          tr
-            td
-              = ad.body 
-          tr
-            td
-              = link_to 'show |', ad if can? :read, ad 
-              = link_to ' edit |', edit_ad_path(ad) if ad.state == 'draft' || ad.state == 'archieved'
-              - if ad.state == 'draft' || ad.state == 'new' || ad.state == 'published' 
-                  = link_to 'destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 
+            tr
+              td
+                = ad.body 
+            tr
+              td
+                = link_to 'show |', ad if can? :read, ad 
+                = link_to ' edit |', edit_ad_path(ad) if ad.state == 'draft' || ad.state == 'archieved'
+                - if ad.state == 'draft' || ad.state == 'new' || ad.state == 'published' 
+                    = link_to ' destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 
 
+= paginate @ads, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination  justify-content-sm-center" 

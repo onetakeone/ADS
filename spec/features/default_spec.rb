@@ -5,7 +5,7 @@ include Warden::Test::Helpers
 feature 'User' do
   scenario 'Open main page' do
     visit '/ads/'
-    expect(page).to have_xpath("/html/body/hh")
+    expect(page).to have_content 'ADVERTISEMENTS'
   end
 
   scenario 'sign in as user' do

@@ -1,8 +1,5 @@
-div class="container"
-  div class="row justify-content-md-center"
-		div class="col-md-auto"
-			= simple_form_for @type do |f| 
-			  div class="form-group"
-			  	= f.input :ad_type, label: "type:" 
-			  = f.submit 'create', :class => 'btn btn-primary btn-lg'   
-			= link_to '| Back', types_path 
+= simple_form_for @type do |f| 
+  div.form-group
+  	= f.input :ad_type, label: 'type:'
+  = f.submit 'create', class: 'btn btn-primary btn-lg'   
+= link_to '| Back', types_path 

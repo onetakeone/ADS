@@ -15,9 +15,8 @@ class UsersController < ApplicationController
   end
 
   def ads
-    @types = Type.all
     @user = User.find(params[:id])
-    @ads = @user.ads.all
+    @ads = @user.ads.order('created_at').reverse_order.page(params[:page])
     authorize! :create, Ad
   end
 

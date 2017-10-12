@@ -1,13 +1,10 @@
-hh EDIT #{@user.username.upcase} | 
-div class="container"
-	div class="row justify-content-md-center"
-		div class="col-md-auto"
-			= simple_form_for :user do |f| 
-				div class="form-group"
-					= f.input :username, label: "username:", required: false 
-				div class="form-group"
-					= f.input :email, label: "email:", required: false 
-				div class="form-group"
-					= f.input :role, label: "Role:", required: false, collection: User.role.values 
-				div class="actions"
-					= f.submit "Set", :class => 'btn btn-primary btn-lg' 
+hh | EDIT #{@user.username.upcase} 
+= simple_form_for :user do |f| 
+	div class="form-group"
+		= f.input :username, label: 'Username:', required: false 
+	div class="form-group"
+		= f.input :email, label: 'E-mail:', required: false 
+	div class="form-group"
+		= f.input :role, label: 'Role:', required: false, collection: User.role.values 
+	div class="actions"
+		= f.submit "Set", :class => 'btn btn-primary btn-lg' 

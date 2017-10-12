@@ -1,35 +1,30 @@
-hh 
-	= @types.find(@ad.type_id).ad_type 
+hh = @ad.type.ad_type
 hu 
 	i by: 
-	|
-	b = @users.find(@ad.user_id).username
-
-div class="container"
-	div class="row justify-content-md-left"
-		div class="col-md-auto"
-			table
-				tbody
-					tr
-						td
-							img src="#{@ad.image}"
-					tr
-						td
-							h2 = @ad.state.upcase
-					tr
-						td 						
-							h1 
-								b = @ad.title
-					tr 
-						td
-							= @ad.body
-					tr
-						- @ad.pictures.each do |pic|
+	b = @ad.user.username
+table
+	tbody
+		tr
+			td
+				img src="#{@ad.image}"
+			td
+				table
+						tr
 							td
-								img src="#{pic.image_src}"
-					tr
-						td					
-							= link_to 'Edit', edit_ad_path(@ad) if can? :manage, @ad
-						td
-							= link_to "| Back", ads_path
-
+								h2 = @ad.state.upcase
+						tr
+							td					
+								h1
+									b = @ad.title
+						tr
+							td
+								= @ad.body
+						tr
+							- @ad.pictures.each do |pic|
+								td
+									img src="#{pic.image_src}"
+		tr
+			td
+				= link_to 'Edit', edit_ad_path(@ad) if can? :manage, @ad
+			td
+				= link_to "| Back", ads_path
