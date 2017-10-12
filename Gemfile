@@ -48,6 +48,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
+  gem 'ruby-growl'
+  gem 'xmpp4r'
   gem 'web-console', '>= 3.3.0'
 end
 

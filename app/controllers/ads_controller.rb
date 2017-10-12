@@ -3,7 +3,7 @@ class AdsController < ApplicationController
   before_action :set_types, only: [:show, :edit, :new, :index, :create]
 
   def index
-    @ads = Ad.where(state: 'published').page(params[:page])
+    @ads = Ad.where(state: 'published').includes(:user, :type).page(params[:page])
   end
 
   def show

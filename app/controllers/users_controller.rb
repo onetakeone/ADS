@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all.page(params[:page])
+    @users = User.all.includes(:ads).page(params[:page])
     authorize! :manage, User
   end
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def ads
     @user = User.find(params[:id])
-    @ads = @user.ads.order('created_at').reverse_order.page(params[:page])
+    @ads = @user.ads.includes(:type).order('created_at').reverse_order.page(params[:page])
     authorize! :create, Ad
   end
 
