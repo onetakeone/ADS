@@ -89,5 +89,25 @@ en:
     edit:
       heading: 'Edit Type'  
       type: 'Type'
+  devise:
+    username: 'Username'
+    email: 'E-Mail'
+    password: 'Password'
+    repeat_password: 'Repeat password'
+    login:
+      heading: 'Welcome'      
+      sign_in: 'Enter'
+    register:
+      heading: 'Register New User'
+      sign_up: 'Register'
+    edit:
+      heading: 'Edit'
+      new_pass: 'New Password'
+      confirm_pass: 'Confirm Password'
+      save: 'Save'
+      delete_user: 'Delete User?'
+      delete: 'Delete'
+      confirmation: 'Enter your password to confirm changes'
+
     
      

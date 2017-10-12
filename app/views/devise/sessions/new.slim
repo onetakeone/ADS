@@ -1,0 +1,10 @@
+hh = t('devise.login.heading')
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
+  div.field
+    = f.input :email, label: t('devise.email'), autofocus: true, required: false 
+  
+  div.field
+    = f.input :password, label: t('devise.password'), autocomplete: 'off', required: false
+
+  div.actions
+    = f.submit t('devise.login.sign_in')

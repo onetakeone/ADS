@@ -1,5 +1,5 @@
 hh = t('users.edit.heading')
-hu = @user.username.upcase
+hh = @user.username.capitalize
 = simple_form_for :user do |f|
 	= render 'form', f: f
 = link_to t('layout.return'), :back
