@@ -1,19 +1,19 @@
 hh = @ad.type.ad_type
-hu 
-	i by: 
+hu
+	i by:
 	b = @ad.user.username
 table
 	tbody
 		tr
 			td
-				img src="#{@ad.image}"
+				img src=@ad.image
 			td
 				table
 						tr
 							td
 								h2 = @ad.state.upcase
 						tr
-							td					
+							td
 								h1
 									b = @ad.title
 						tr
@@ -22,9 +22,9 @@ table
 						tr
 							- @ad.pictures.each do |pic|
 								td
-									img src="#{pic.image_src}"
+									img src=pic.image_src
 		tr
 			td
-				= link_to 'Edit', edit_ad_path(@ad) if can? :manage, @ad
+				= link_to t('layout.edit'), edit_ad_path(@ad) if can? :manage, @ad
 			td
-				= link_to "| Back", ads_path
+				= link_to t('layout.return'), :back

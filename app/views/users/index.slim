@@ -1,6 +1,6 @@
-hh | MANAGE USERS
+hh = t('users.index.heading')
 br
-button class='btn btn-primary btn-lg' = link_to 'CREATE', users_new_path
+button class='btn btn-primary btn-lg' = link_to t('users.index.create'), users_new_path
 hr
 - @users.each do |u|
 	table.table-sm
@@ -12,8 +12,8 @@ hr
 				i = u.role
 				br
 				- if can? :edit, u
-					button type="button" class='btn btn-secondary btn-sm'
-						= link_to 'EDIT', controller: :users, action: :edit, id: u.id
+					button type='button' class='btn btn-secondary btn-sm'
+						= link_to t('users.index.edit'), controller: :users, action: :edit, id: u.id
 			td
 				table id="ads"
 					tr
@@ -23,7 +23,7 @@ hr
 					tr
 						- u.ads.each do |a|
 							td
-								u = link_to "#{a.state}", edit_ad_path(a)
+								u = link_to a.state.capitalize, edit_ad_path(a)
 	hr
 
 = paginate @users, theme: 'twitter-bootstrap-3', pagination_class: 'pagination justify-content-sm-center'

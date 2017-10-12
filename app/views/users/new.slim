@@ -1,14 +1,8 @@
-hh | NEW USER 
-= simple_form_for :user do |f| 
+hh = t('users.new.heading')
+= simple_form_for :user do |f|
 	div.form-group
-		= f.input :username, label: 'username:', required: false 
+		= f.input :password, required: false
 	div.form-group
-		= f.input :email, label: 'email:', required: false 
-	div.form-group
-		= f.input :password, required: false 
-	div.form-group
-		= f.input :password_confirmation, required: false 
-	div.form-group
-		= f.input :role, label: 'Role:', required: false, collection: User.role.values 
-	div.actions
-		= f.submit "Set", :class => 'btn btn-primary btn-lg' 
+		= f.input :password_confirmation, required: false
+	= render 'form', f: f
+= link_to t('layout.return'), :back

@@ -1,51 +1,51 @@
 header
   ul class='nav nav-pills'
     li.nav-item_dropdown
-      a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' adverts
+      a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' #{t'layout.header.adverts'}
       div.dropdown-menu
         a.dropdown-item
           div#nav
-            = link_to 'adverts', ads_path
+            = link_to t('layout.header.adverts'), ads_path
 
         - if can? :create, Ad
           a.dropdown-item
             div#nav
-              = link_to 'create ad', new_ad_path
+              = link_to t('layout.header.create_ad'), new_ad_path
 
     - if can? :manage, User
       li.nav-item_dropdown
-        a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' admin tools
+        a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' #{t'layout.header.admin_tools'}
         div.dropdown-menu
           a.dropdown-item
             div#nav
-              = link_to 'users', users_path
+              = link_to t('layout.header.users'), users_path
           a.dropdown-item
             div#nav
-              = link_to 'types', types_path if can? :manage, Type
+              = link_to t('layout.header.types'), types_path if can? :manage, Type
 
     li.nav-item_dropdown
-      a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' session
+      a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' #{t'layout.header.session'}
       div.dropdown-menu
         - if current_user.nil?
           a.dropdown-item
             div#nav
-              = link_to 'login', new_user_session_path
+              = link_to t('layout.header.login'), new_user_session_path
           a.dropdown-item
             div#nav
-              = link_to 'register', new_user_registration_path
+              = link_to t('layout.header.register'), new_user_registration_path
 
         - if !current_user.nil?
           a.dropdown-item
             div#nav
-              = link_to 'logout', destroy_user_session_path, method: :delete
+              = link_to t('layout.header.logout'), destroy_user_session_path, method: :delete
 
     - if !current_user.nil?
       li.nav-item_dropdown
-        a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' = current_user.username
+        a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' = current_user.username.capitalize
         div.dropdown-menu
           a.dropdown-item
             div#nav
-              = link_to 'profile', edit_user_registration_path
+              = link_to t('layout.header.profile'), edit_user_registration_path
           a.dropdown-item
             div#nav
-              = link_to 'ads', user_ads_path(current_user) if can? :create, Ad
+              = link_to t('layout.header.user_ads'), user_ads_path(current_user) if can? :create, Ad

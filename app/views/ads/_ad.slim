@@ -21,6 +21,6 @@ table.table-sm
               b = ad.user.username            
         tr
           td           
-            = link_to 'show |', ad if can? :read, ad               
-            = link_to ' edit |', edit_ad_path(ad) if can? :update, ad                
-            = link_to ' destroy ', ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 
+            = link_to t('layout.show'), ad if can? :read, ad               
+            = link_to t('layout.edit'), edit_ad_path(ad) if can? :update, ad                
+            = link_to t('layout.destroy'), ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 

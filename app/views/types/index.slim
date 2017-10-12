@@ -1,16 +1,15 @@
-hh | MANAGE AD TYPES 
+hh = t('types.index.heading')
 br
-button type='button' class='btn btn-primary btn-lg' = link_to 'NEW', new_type_path
+button type='button' class='btn btn-primary btn-lg' = link_to t('types.index.create'), new_type_path
 hr
 table.table-sm
-	- @types.each do |s| 
+	- @types.each do |t| 
 		tr
 			td
-				hu = s.ad_type 
+				hu = t.ad_type
 		tr
 			td
-				- if can? :manage, s 
+				- if can? :manage, t
 					p
-						= link_to 'edit |', edit_type_path(s)  
-						= link_to ' destroy', s, method: :delete, data: { confirm: 'Are you sure?' }
-			
+						= link_to t('layout.edit'), edit_type_path(t)
+						= link_to t('layout.destroy'), t, method: :delete, data: { confirm: 'Are you sure?' }

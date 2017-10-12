@@ -1,0 +1,8 @@
+div.form-group
+	= f.input :username, label: t('users.edit.username'), required: false 
+div.form-group
+	= f.input :email, label: t('users.edit.email'), required: false 
+div.form-group
+	= f.input :role, label: t('users.edit.role'), required: false, collection: User.role.values 
+div.form-group
+	= f.submit t('users.edit.save'), class: 'btn btn-primary btn-lg' 

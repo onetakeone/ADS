@@ -30,4 +30,64 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  layout:
+    header:
+      adverts: 'Adverts'
+      create_ad: 'New Ad'
+      admin_tools: 'Admin Tools'
+      users: 'Users'
+      types: 'Types'
+      session: 'Session'
+      logout: 'Logout'
+      login: 'Login'
+      register: 'Register'
+      profile: 'Profile'
+      user_ads: 'My Ads'
+    show: 'Open '
+    edit: '| Edit '
+    return: '| Back '
+    destroy: '| Delete '
+
+  ads:
+    index:
+      heading: 'Advertisements'      
+    new:
+      heading: 'Create New Ad'
+      type: 'Type'
+      title: 'Title'
+      advert: 'Advertisement'
+      icon: 'Icon'
+      add_picture: 'Add Picture'
+      attach_image: 'Attach Image'
+      remove_image: 'Remove Image'
+      create: 'Save'
+    edit:
+      heading: 'Edit Ad'
+
+  users:
+    ads:
+      heading: 'My Ads'
+    index:
+      heading: 'Manage Users'
+      create: 'New'
+      edit: 'Edit'
+    edit:
+      heading: 'Edit'
+      username: 'Username'
+      mail: 'E-Mail'
+      role: 'Role'
+      save: 'Save'       
+    new:
+      heading: 'New User'
+
+  types:
+    index: 
+      heading: 'Manage Ad Types'
+      create: 'New'
+    new:
+      heading: 'New Type'
+    edit:
+      heading: 'Edit Type'  
+      type: 'Type'
+    
+     
