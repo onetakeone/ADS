@@ -29,6 +29,7 @@ gem 'slim'
 gem 'state_machines-activerecord'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'whenever'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
