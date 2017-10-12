@@ -1,51 +1,51 @@
 header
-  ul class="nav nav-pills"
-    li class="nav-item dropdown"
-      a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" adverts
-      div class="dropdown-menu"
-        a class="dropdown-item"
-          div id="nav"
+  ul class='nav nav-pills'
+    li.nav-item_dropdown
+      a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' adverts
+      div.dropdown-menu
+        a.dropdown-item
+          div#nav
             = link_to 'adverts', ads_path
 
         - if can? :create, Ad
-          a class="dropdown-item"
-            div id="nav"
+          a.dropdown-item
+            div#nav
               = link_to 'create ad', new_ad_path
 
     - if can? :manage, User
-      li class="nav-item dropdown"
-        a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" admin tools
-        div class="dropdown-menu"
-          a class="dropdown-item"
-            div id="nav"
+      li.nav-item_dropdown
+        a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' admin tools
+        div.dropdown-menu
+          a.dropdown-item
+            div#nav
               = link_to 'users', users_path
-          a class="dropdown-item"
-            div id="nav"
-              = link_to "types", types_path if can? :manage, Type
+          a.dropdown-item
+            div#nav
+              = link_to 'types', types_path if can? :manage, Type
 
-    li class="nav-item dropdown"
-      a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" session
-      div class="dropdown-menu"
+    li.nav-item_dropdown
+      a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' session
+      div.dropdown-menu
         - if current_user.nil?
-          a class="dropdown-item"
-            div id="nav"
+          a.dropdown-item
+            div#nav
               = link_to 'login', new_user_session_path
-          a class="dropdown-item"
-            div id="nav"
+          a.dropdown-item
+            div#nav
               = link_to 'register', new_user_registration_path
 
         - if !current_user.nil?
-          a class="dropdown-item"
-            div id="nav"
+          a.dropdown-item
+            div#nav
               = link_to 'logout', destroy_user_session_path, method: :delete
 
     - if !current_user.nil?
-      li class="nav-item dropdown"
-        a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" = current_user.username
-        div class="dropdown-menu"
-          a class="dropdown-item"
-            div id="nav"
+      li.nav-item_dropdown
+        a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' = current_user.username
+        div.dropdown-menu
+          a.dropdown-item
+            div#nav
               = link_to 'profile', edit_user_registration_path
-          a class="dropdown-item"
-            div id="nav"
+          a.dropdown-item
+            div#nav
               = link_to 'ads', user_ads_path(current_user) if can? :create, Ad

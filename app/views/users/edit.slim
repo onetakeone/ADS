@@ -1,10 +1,10 @@
 hh | EDIT #{@user.username.upcase} 
 = simple_form_for :user do |f| 
-	div class="form-group"
+	div.form-group
 		= f.input :username, label: 'Username:', required: false 
-	div class="form-group"
+	div.form-group
 		= f.input :email, label: 'E-mail:', required: false 
-	div class="form-group"
+	div.form-group
 		= f.input :role, label: 'Role:', required: false, collection: User.role.values 
-	div class="actions"
-		= f.submit "Set", :class => 'btn btn-primary btn-lg' 
+	div.form-group
+		= f.submit "Set", class: 'btn btn-primary btn-lg' 
