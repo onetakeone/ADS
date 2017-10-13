@@ -1,5 +1,5 @@
 = simple_form_for @ad do |f|
-  - if can? :update, Ad
+  - if can? :open, Ad
     div.form-group
       = f.input :type_id, collection: @options, label: t('ads.new.type'), error: t('ads.form.error_type'), required: false
       = f.input :title, label: t('ads.new.title'), error: t('ads.form.error_title'), required: false

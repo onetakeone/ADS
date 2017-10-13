@@ -61,7 +61,8 @@ en:
         first: 'Type'
         second: 'Title'
         third: 'Advert'
-        button: 'Filter'     
+        button: 'Filter'
+        myads: 'My ads'     
     new:
       heading: 'Create New Ad'
       type: 'Type'
@@ -77,6 +78,7 @@ en:
       error_type: 'Type error'
       error_title: 'Title is mandatory, please specify one'
       error_ad: 'Please write down you advertisement'
+      
   users:
     notice:
       created: 'User created.'

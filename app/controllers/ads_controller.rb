@@ -3,10 +3,17 @@ class AdsController < ApplicationController
   before_action :set_types, only: [:show, :edit, :new, :index, :create]
   load_and_authorize_resource
 
+  def personal_filter
+    @personal_filter ||= Ad.ransack(params[:q])
+    if params[:q]
+      @myads ||= @personal_filter.result.where(user: current_user).includes(:user, :type).order('created_at').reverse_order.page(params[:page])
+    end
+  end
+
   def index
-    @ads = Ad.where(state: 'published').includes(:user, :type).page(params[:page])
-    @q = Ad.ransack(params[:q])
-    @search = @q.result.where(state: 'published').includes(:user, :type).page(params[:page])
+    @ads            = Ad.where(user: current_user).includes(:user, :type).page(params[:page])
+    @general_filter = Ad.ransack(params[:q])
+    @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])   
   end
 
   def show
@@ -14,7 +21,7 @@ class AdsController < ApplicationController
 
   def new
     @user = current_user
-    @ad = @user.ads.new
+    @ad   = @user.ads.new
     options
   end
 
@@ -64,7 +71,7 @@ class AdsController < ApplicationController
   def options
     @options = []
     @types.each { |t| @options << [t.ad_type, t.id] }
-  end
+  end 
 
   def resource_params
     params.require(:ad).permit(:title, :body, :type_id, :image, :state, pictures_attributes: [:id, :image_src, :done, :_destroy])

@@ -8,10 +8,12 @@ class Ability
       can :create, User
       can :manage, Type
       can :read, Ad
-      can :destroy, Ad    
+      can :destroy, Ad      
+      can :update, Ad  
     elsif user.role.user?
       can :create, Ad, user_id: user.id
       can :read, Ad
+      can :open, Ad 
       can :update, Ad, user_id: user.id, :state => ['draft', 'archieved'] 
       can :destroy, Ad, user_id: user.id, :state => ['draft', 'new', 'verified', 'published']
       cannot :edit, Type

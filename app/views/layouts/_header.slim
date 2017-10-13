@@ -5,12 +5,12 @@ header
       div.dropdown-menu
         a.dropdown-item
           div#nav
-            = link_to t('layout.header.adverts'), ads_path
+            = link_to t('layout.header.adverts'), ads_path, class: 'btn btn-link btn-lg'
 
         - if can? :create, Ad
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.create_ad'), new_ad_path
+              = link_to t('layout.header.create_ad'), new_ad_path, class: 'btn btn-link btn-lg'
 
     - if can? :manage, User
       li.nav-item_dropdown
@@ -18,10 +18,10 @@ header
         div.dropdown-menu
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.users'), users_path
+              = link_to t('layout.header.users'), users_path, class: 'btn btn-link btn-lg'
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.types'), types_path if can? :manage, Type
+              = link_to t('layout.header.types'), types_path if can? :manage, Type, class: 'btn btn-link btn-lg'
 
     li.nav-item_dropdown
       a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' #{t'layout.header.session'}
@@ -29,10 +29,10 @@ header
         - if current_user.nil?
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.login'), new_user_session_path
+              = link_to t('layout.header.login'), new_user_session_path, class: 'btn btn-link btn-lg'
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.register'), new_user_registration_path
+              = link_to t('layout.header.register'), new_user_registration_path, class: 'btn btn-link btn-lg'
 
         - if !current_user.nil?
           a.dropdown-item
@@ -45,7 +45,10 @@ header
         div.dropdown-menu
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.profile'), edit_user_registration_path
+              = link_to t('layout.header.profile'), edit_user_registration_path, class: 'btn btn-link btn-lg'
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.user_ads'), user_ads_path(current_user) if can? :create, Ad
+              = search_form_for @personal_filter do |f|
+                = f.submit t('ads.index.filter.myads'), class: 'btn btn-link btn-lg'
+                = f.hidden_field :user_username_cont, class: 'form-control col-lg-1', value: current_user.username
+                
