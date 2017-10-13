@@ -9,7 +9,7 @@ def admin_edit_state
   click_on 'Draft'
   expect(page).to have_content I18n.t('ads.edit.heading')
   select 'new', from: 'State'
-  click_button I18n.t('users.edit.save')
+  click_button I18n.t('layout.save')
   expect(page).to have_content I18n.t('ads.notice.updated')
 end
 
@@ -19,7 +19,7 @@ def create_ad
   select type.ad_type, from: 'Type'
   fill_in 'Title', with: 'Title-test'
   fill_in 'Advert', with: 'Advert-test'
-  click_button I18n.t('ads.new.create')
+  click_button I18n.t('layout.save')
   expect(page).to have_content I18n.t('ads.notice.created')
 end
 
@@ -30,7 +30,7 @@ def edit_role
   find_link(I18n.t('users.index.edit'), href: '/users/2/edit').click
   expect(page).to have_content I18n.t('users.edit.heading')
   select 'guest', from: 'Role'
-  click_on I18n.t('users.edit.save')
+  click_on I18n.t('layout.save')
   expect(page).to have_content I18n.t('users.index.heading')
 end
 
@@ -38,7 +38,7 @@ def edit_ad
   click_on 'Edit'
   expect(page).to have_content I18n.t('ads.edit.heading')
   select 'new', from: 'State'
-  click_button I18n.t('ads.new.create')
+  click_button I18n.t('layout.save')
   expect(page).to have_content I18n.t('ads.notice.updated')
 end
 
@@ -47,3 +47,4 @@ def user_sign_in
   user = FactoryGirl.create(:user)
   login_as(user) # Sign in via Warden helper login_as
 end
+

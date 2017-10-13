@@ -4,6 +4,31 @@ FactoryGirl.define do
     body '1'
     state 'draft'
     type_id '1'
+    user_id '1'
+  end
+
+  factory :wts, class: Ad do
+    title 'wts'
+    state 'published'
+    body 'Test_Filter'
+    type_id '1'
+    user_id '48'
+  end
+
+  factory :wts_one, class: Ad do
+    title 'wts'
+    state 'published'
+    body 'Test_Filter1'
+    type_id '1'
+    user_id '23'
+  end
+
+  factory :wts_two, class: Ad do
+    title 'wts'
+    state 'published'
+    body 'Test_Filter2'
+    type_id '1'
+    user_id '24'
   end
 
   factory :type do
