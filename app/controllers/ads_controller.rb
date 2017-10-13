@@ -5,6 +5,8 @@ class AdsController < ApplicationController
 
   def index
     @ads = Ad.where(state: 'published').includes(:user, :type).page(params[:page])
+    @q = Ad.ransack(params[:q])
+    @search = @q.result.where(state: 'published').includes(:user, :type).page(params[:page])
   end
 
   def show

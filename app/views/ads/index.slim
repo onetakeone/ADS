@@ -1,6 +1,11 @@
 hh = t('ads.index.heading')
-- @ads.each do |ad|
-  = render 'ad', ad: ad     
-= paginate @ads, :theme => 'twitter-bootstrap-3', pagination_class: "pagination justify-content-sm-center" 
-
-
+= search_form_for @q do |f|
+	div.col-lg-12
+		div.input-group		
+			= f.search_field :type_ad_type_cont, class: 'form-control col-lg-6', placeholder: t('ads.index.filter.first')	
+			= f.search_field :title_cont, class: 'form-control col-lg-6', placeholder: t('ads.index.filter.second')			
+			= f.search_field :body_cont, class: 'form-control col-lg-6', placeholder: t('ads.index.filter.third')	
+			= f.submit t('ads.index.filter.button'), class: 'btn btn-primary btn-lg'
+- @search.each do |ad|
+	= render 'ad', ad: ad
+= paginate @search, :theme => 'twitter-bootstrap-3', pagination_class: "pagination justify-content-sm-center"

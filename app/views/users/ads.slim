@@ -1,27 +1,28 @@
 hh = t('users.ads.heading')
-- @ads.each do |ad|       
+- @search.each do |ad|
   table.table-sm
     tr
-      td 
+      td
         img src="#{ad.image}"
       td
         table
-          tr 
-            td  
-              h1 = ad.state.upcase 
+          tr
+            td
+              p = ad.user.username
+              h1 = ad.state.upcase
             tr
               td
                 = ad.type.ad_type
             tr
               td
-                b = ad.title 
+                b = ad.title
             tr
               td
-                = ad.body 
+                = ad.body
             tr
               td
-                = link_to t('layout.show'), ad if can? :read, ad 
+                = link_to t('layout.show'), ad if can? :read, ad
                 = link_to t('layout.edit'), edit_ad_path(ad) if ad.state == 'draft' || ad.state == 'archieved'
-                = link_to t('layout.destroy'), ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 
+                = link_to t('layout.destroy'), ad, method: :delete, data: { confirm: t('layout.confirm') } if can? :destroy, ad
 
-= paginate @ads, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination  justify-content-sm-center" 
+= paginate @search, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination  justify-content-sm-center"

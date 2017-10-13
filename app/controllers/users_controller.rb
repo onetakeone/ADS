@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   end
 
   def ads
-    @user = User.find(params[:id])
-    @ads = @user.ads.includes(:type).order('created_at').reverse_order.page(params[:page])
+    @q = current_user.ads.ransack(params[:q])
+    @search = @q.result.where(user: current_user).includes(:type).order('created_at').reverse_order.page(params[:page])
   end
 
   def create
