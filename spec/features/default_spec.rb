@@ -5,7 +5,7 @@ include Warden::Test::Helpers
 feature 'User' do
   scenario 'Open main page' do
     visit '/ads/'
-    expect(page).to have_content 'ADVERTISEMENTS'
+    expect(page).to have_content I18n.t('ads.index.heading')
   end
 
   scenario 'sign in as user' do
@@ -37,7 +37,7 @@ feature 'Admin' do
   scenario 'edit ad state' do
     user_sign_in
     create_ad    
-    click_on 'logout'
+    click_on I18n.t('layout.header.logout')
     admin_sign_in
     admin_edit_state    
   end

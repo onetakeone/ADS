@@ -36,7 +36,7 @@ class AdsController < ApplicationController
     @ad = @user.ads.new(ad_params)
     respond_to do |format|
       if @ad.save
-        format.html { redirect_to user_ads_path(@user), notice: 'Ad was successfully created.' }
+        format.html { redirect_to user_ads_path(@user), notice: t('ads.notice.created') }
       else
         format.html { render :new }
       end
@@ -46,7 +46,7 @@ class AdsController < ApplicationController
   def update
     respond_to do |format|
       if @ad.update(ad_params)
-        format.html { redirect_to ads_path, notice: 'Ad was successfully updated.' }
+        format.html { redirect_to ads_path, notice: t('ads.notice.updated') }
         format.json { render :show, status: :ok, location: @ad }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class AdsController < ApplicationController
   def destroy
     @ad.destroy
     respond_to do |format|
-      format.html { redirect_to user_ads_path(@ad.user), notice: 'Ad was successfully destroyed.' }
+      format.html { redirect_to user_ads_path(@ad.user), notice: t('ads.notice.destroyed') }
       format.json { head :no_content }
     end
   end

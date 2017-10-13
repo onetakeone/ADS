@@ -49,6 +49,10 @@ en:
     destroy: '| Delete '
 
   ads:
+    notice:
+      created: 'Ad was successfully created.'
+      updated: 'Ad was successfully updated.'
+      destroyed: 'Ad was successfully destroyed.'
     index:
       heading: 'Advertisements'      
     new:
