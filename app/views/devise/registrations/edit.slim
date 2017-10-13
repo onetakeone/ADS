@@ -20,4 +20,4 @@ hh #{resource_name.to_s.humanize}
     = f.submit t('devise.edit.save')
 
 h3 = t('devise.edit.delete_user')
-= button_to t('devise.edit.delete'), registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete
+= button_to t('devise.edit.delete'), registration_path(resource_name), data: { confirm: t('layout.confirm') }, method: :delete

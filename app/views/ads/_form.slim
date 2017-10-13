@@ -1,26 +1,26 @@
-= simple_form_for @ad do |f| 
-  - if can? :update, Ad 
+= simple_form_for @ad do |f|
+  - if can? :update, Ad
     div.form-group
-      = f.input :type_id, collection: @options, label: t('ads.new.type'), error: 'Type error', required: false 
-      = f.input :title, label: t('ads.new.title'), error: 'Title is mandatory, please specify one', required: false 
-      = f.input :body, as: :text, label: t('ads.new.advert'), error: 'Please write down you advertisement', required: false     
-        
-    div.form-group
-      = image_tag(@ad.image_url) if @ad.image? 
-      = f.input :image, label: t('ads.new.icon')
-      = f.hidden_field :image_cache      
+      = f.input :type_id, collection: @options, label: t('ads.new.type'), error: t('ads.form.error_type'), required: false
+      = f.input :title, label: t('ads.new.title'), error: t('ads.form.error_title'), required: false
+      = f.input :body, as: :text, label: t('ads.new.advert'), error: t('ads.form.error_ad'), required: false
 
     div.form-group
-      = f.simple_fields_for :pictures do |form| 
-        = render 'picture_fields', f: form      
-    
+      = image_tag(@ad.image_url) if @ad.image?
+      = f.input :image, label: t('ads.new.icon')
+      = f.hidden_field :image_cache
+
+    div.form-group
+      = f.simple_fields_for :pictures do |form|
+        = render 'picture_fields', f: form
+
     button type='button' class='btn btn-secondary btn-sm'
-      = link_to_add_association t('ads.new.add_picture'), f, :pictures        
-  
-  - unless @ad.new_record? 
+      = link_to_add_association t('ads.new.add_picture'), f, :pictures
+
+  - unless @ad.new_record?
     div.field
-      = f.input :state, collection: @states 
-  
+      = f.input :state, collection: @states
+
   p.mb-4
     div.actions
-      = f.submit t('layout.save'), class: 'btn btn-primary btn-lg' 
+      = f.submit t('layout.save'), class: 'btn btn-primary btn-lg'

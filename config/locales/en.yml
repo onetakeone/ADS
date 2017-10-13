@@ -48,6 +48,7 @@ en:
     return: '| Back '
     destroy: '| Delete '
     save: 'Save'
+    confirm: 'Are you sure?'
 
   ads:
     notice:
@@ -55,7 +56,12 @@ en:
       updated: 'Ad was successfully updated.'
       destroyed: 'Ad was successfully wiped out, devastated and washed away.'
     index:
-      heading: 'Advertisements'      
+      heading: 'Advertisements' 
+      filter:
+        first: 'Type'
+        second: 'Title'
+        third: 'Advert'
+        button: 'Filter'     
     new:
       heading: 'Create New Ad'
       type: 'Type'
@@ -67,7 +73,10 @@ en:
       remove_image: 'Remove Image'
     edit:
       heading: 'Edit Ad'
-
+    form:
+      error_type: 'Type error'
+      error_title: 'Title is mandatory, please specify one'
+      error_ad: 'Please write down you advertisement'
   users:
     notice:
       created: 'User created.'
@@ -120,6 +129,7 @@ en:
       delete_user: 'Delete User?'
       delete: 'Delete'
       confirmation: 'Enter your password to confirm changes'
+
 
     
      
