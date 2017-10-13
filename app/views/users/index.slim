@@ -24,6 +24,9 @@ hr
 						- u.ads.each do |a|
 							td
 								u = link_to a.state.capitalize, edit_ad_path(a)
+		tr
+			td
+				= link_to t('layout.destroy'), destroy_user_path(u), method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, u
 	hr
 
 = paginate @users, theme: 'twitter-bootstrap-3', pagination_class: 'pagination justify-content-sm-center'

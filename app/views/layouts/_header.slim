@@ -37,7 +37,7 @@ header
         - if !current_user.nil?
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.logout'), destroy_user_session_path, method: :delete
+              = link_to t('layout.header.logout'), logout_path, method: :delete
 
     - if !current_user.nil?
       li.nav-item_dropdown

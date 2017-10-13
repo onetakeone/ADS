@@ -1,7 +1,8 @@
 class TypesController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @types = Type.all
-    authorize! :edit, Type
   end
 
   def show
@@ -10,32 +11,42 @@ class TypesController < ApplicationController
 
   def new
     @type = Type.new
-    authorize! :edit, Type
   end
 
   def edit
     @type = Type.find(params[:id])
-    authorize! :edit, Type
   end
 
   def create
-    @type = Type.new(params_type)
-    @type.save(params_type)
-    redirect_to types_path
+    respond_to do |format|
+      if @type.save
+        format.html { redirect_to types_path, notice: t('types.notice.created') }
+      else
+        render :new
+      end
+    end
   end
 
   def update
-    @type = Type.find(params[:id])
-    @type.update(params_type)
-    redirect_to types_path
+    respond_to do |format|
+      if @type.update(resource_params)
+        format.html { redirect_to types_path, notice: t('types.notice.updated') }
+      else
+        render :edit
+      end
+    end
   end
 
   def destroy 
+    @type.destroy
+    respond_to do |format|
+      format.html { redirect_to types_path, notice: t('types.notice.destroyed') }
+    end
   end
 
   private
 
-  def params_type
+  def resource_params
     params.require(:type).permit(:ad_type)
   end
 end

@@ -1,6 +1,7 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
   before_action :set_types, only: [:show, :edit, :new, :index, :create]
+  load_and_authorize_resource
 
   def index
     @ads = Ad.where(state: 'published').includes(:user, :type).page(params[:page])
@@ -12,31 +13,19 @@ class AdsController < ApplicationController
   def new
     @user = current_user
     @ad = @user.ads.new
-    @options = []
-    @types.each do |t|
-      @options << [t.ad_type, t.id]
-    end
-    authorize! :create, Ad
+    options
   end
 
   def edit
     @states = []
-    @ad.state_transitions.each do |t|
-      @states << t.to_name
-    end
-    @options = []
-    @types.each do |t|
-      @options << [t.ad_type, t.id]
-    end
-    authorize! :edit, Ad
+    @ad.state_transitions.each { |t| @states << t.to_name }
+    options
   end
 
   def create
-    @user = current_user
-    @ad = @user.ads.new(ad_params)
     respond_to do |format|
       if @ad.save
-        format.html { redirect_to user_ads_path(@user), notice: t('ads.notice.created') }
+        format.html { redirect_to user_ads_path(current_user), notice: t('ads.notice.created') }
       else
         format.html { render :new }
       end
@@ -45,12 +34,10 @@ class AdsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @ad.update(ad_params)
+      if @ad.update(resource_params)
         format.html { redirect_to ads_path, notice: t('ads.notice.updated') }
-        format.json { render :show, status: :ok, location: @ad }
       else
         format.html { render :edit }
-        format.json { render json: @ad.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +46,6 @@ class AdsController < ApplicationController
     @ad.destroy
     respond_to do |format|
       format.html { redirect_to user_ads_path(@ad.user), notice: t('ads.notice.destroyed') }
-      format.json { head :no_content }
     end
   end
 
@@ -73,7 +59,12 @@ class AdsController < ApplicationController
     @types = Type.all
   end
 
-  def ad_params
+  def options
+    @options = []
+    @types.each { |t| @options << [t.ad_type, t.id] }
+  end
+
+  def resource_params
     params.require(:ad).permit(:title, :body, :type_id, :image, :state, pictures_attributes: [:id, :image_src, :done, :_destroy])
   end
 end

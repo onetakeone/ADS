@@ -1,5 +1,6 @@
-= simple_form_for @type do |f| 
+= simple_form_for @type do |f|
   div.form-group
   	= f.input :ad_type, label: t('types.edit.type')
-  = f.submit 'create', class: 'btn btn-primary btn-lg'   
-= link_to t('layout.return'), types_path 
+  = f.submit t('layout.save'), class: 'btn btn-primary btn-lg' 
+br
+= link_to t('layout.return'), types_path

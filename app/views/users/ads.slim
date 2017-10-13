@@ -22,7 +22,6 @@ hh = t('users.ads.heading')
               td
                 = link_to t('layout.show'), ad if can? :read, ad 
                 = link_to t('layout.edit'), edit_ad_path(ad) if ad.state == 'draft' || ad.state == 'archieved'
-                - if ad.state == 'draft' || ad.state == 'new' || ad.state == 'published' 
-                    = link_to t('layout.destroy'), ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 
+                = link_to t('layout.destroy'), ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 
 
 = paginate @ads, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination  justify-content-sm-center" 

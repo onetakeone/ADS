@@ -8,7 +8,7 @@ end
 gem 'bcrypt', '>= 3.1.2', platforms: :ruby # (gem install bcrypt --platform=ruby)
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '~> 3.3.0'
-gem 'cancan'
+gem 'cancancan', '~> 2.0'
 gem 'carrierwave'
 gem 'cocoon'
 gem 'coffee-rails', '~> 4.2'

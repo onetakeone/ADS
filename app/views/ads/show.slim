@@ -24,7 +24,8 @@ table
 								td
 									img src=pic.image_src
 		tr
-			td
-				= link_to t('layout.edit'), edit_ad_path(@ad) if can? :manage, @ad
+			td				
 			td
 				= link_to t('layout.return'), :back
+				= link_to t('layout.edit'), edit_ad_path(@ad) if can? :update, @ad
+				= link_to t('layout.destroy'), @ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, @ad 

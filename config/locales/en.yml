@@ -47,12 +47,13 @@ en:
     edit: '| Edit '
     return: '| Back '
     destroy: '| Delete '
+    save: 'Save'
 
   ads:
     notice:
       created: 'Ad was successfully created.'
       updated: 'Ad was successfully updated.'
-      destroyed: 'Ad was successfully destroyed.'
+      destroyed: 'Ad was successfully wiped out, devastated and washed away.'
     index:
       heading: 'Advertisements'      
     new:
@@ -64,11 +65,14 @@ en:
       add_picture: 'Add Picture'
       attach_image: 'Attach Image'
       remove_image: 'Remove Image'
-      create: 'Save'
     edit:
       heading: 'Edit Ad'
 
   users:
+    notice:
+      created: 'User created.'
+      updated: 'User updated.'
+      destroyed: 'OMG YOU KILLED IT!!!'
     ads:
       heading: 'My Ads'
     index:
@@ -79,8 +83,7 @@ en:
       heading: 'Edit'
       username: 'Username'
       mail: 'E-Mail'
-      role: 'Role'
-      save: 'Save'       
+      role: 'Role'       
     new:
       heading: 'New User'
 
@@ -89,10 +92,15 @@ en:
       heading: 'Manage Ad Types'
       create: 'New'
     new:
-      heading: 'New Type'
+      heading: 'New Type'      
     edit:
       heading: 'Edit Type'  
       type: 'Type'
+    notice: 
+      updated: 'Type updated.'
+      created: 'Type created.'
+      destroyed: 'Type wiped out as fuck.'
+
   devise:
     username: 'Username'
     email: 'E-Mail'

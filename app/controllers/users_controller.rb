@@ -1,40 +1,55 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource 
+  skip_authorize_resource :only => :ads
+
   def index
     @users = User.all.includes(:ads).page(params[:page])
-    authorize! :manage, User
   end
 
   def edit
-    @user = User.find(params[:id])
-    authorize! :manage, User
+    @user = User.find(params[:id])    
   end
 
   def new
     @user = User.new
-    authorize! :manage, User
   end
 
   def ads
     @user = User.find(params[:id])
     @ads = @user.ads.includes(:type).order('created_at').reverse_order.page(params[:page])
-    authorize! :create, Ad
   end
 
   def create
-    @user = User.new(user_params)
-    @user.save
-    redirect_to users_path
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to users_path, notice: t('users.notice.created') }
+      else
+        render :new
+      end
+    end
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to users_path
+    respond_to do |format|
+      if @user.update(resource_params)
+        format.html { redirect_to users_path, notice: t('users.notice.updated') }
+      else
+        render :edit
+      end
+    end
+  end
+
+  def destroy    
+    @user.destroy
+    respond_to do |format|
+        format.html { redirect_to users_path, notice: t('users.notice.destroyed') }
+    end
   end
 
   private
 
-  def user_params
+  def resource_params
     params.require(:user).permit(:username, :role, :email, :password)
   end
 end

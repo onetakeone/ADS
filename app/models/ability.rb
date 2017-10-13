@@ -5,15 +5,15 @@ class Ability
     user ||= User.new
     if user.role.admin?
       can :manage, User
+      can :create, User
       can :manage, Type
       can :read, Ad
-      can :destroy, Ad
-      can :edit, Ad
+      can :destroy, Ad    
     elsif user.role.user?
-      can :create, Ad, :user_id => user.id
+      can :create, Ad, user_id: user.id
       can :read, Ad
-      can :update, Ad, :user_id => user.id
-      can :destroy, Ad, :user_id => user.id, :state => ['published', 'new', 'draft']
+      can :update, Ad, user_id: user.id, :state => ['draft', 'archieved'] 
+      can :destroy, Ad, user_id: user.id, :state => ['draft', 'new', 'verified', 'published']
       cannot :edit, Type
     else
       can :read, Ad
