@@ -1,19 +1,9 @@
 hh = t('ads.index.heading')
-- if @myads.nil? || current_user.nil?
-	= search_form_for @general_filter do |g|
-		div.col-lg-12
-			div.input-group		
-				= g.search_field :type_ad_type_cont, class: 'form-control col-lg-6', placeholder: t('ads.index.filter.first')	
-				= g.search_field :title_cont, class: 'form-control col-lg-6', placeholder: t('ads.index.filter.second')			
-				= g.search_field :body_cont, class: 'form-control col-lg-6', placeholder: t('ads.index.filter.third')	
-				= g.submit t('ads.index.filter.button'), class: 'btn btn-primary btn-lg'
 
-	- @search.each do |ad|
-		= render 'ad', ad: ad
+= form_for ads_path, method: :get, id: 'ads_search' do
+	p
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", :name => nil
+	div.ads	
+		= render 'ads'
 
-	= paginate @search, :theme => 'twitter-bootstrap-3', pagination_class: "pagination justify-content-sm-center"	
-- else
-	- unless @myads.nil?
-		- @myads.each do |ad| 
-			= render 'ad', ad: ad
-		= paginate @myads, :theme => 'twitter-bootstrap-3', pagination_class: "pagination justify-content-sm-center"

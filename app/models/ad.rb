@@ -1,6 +1,6 @@
 class Ad < ApplicationRecord
   paginates_per 4
-  
+
   validates :title, presence: true, length: { maximum: 150}
   validates :body, presence: true, length: { maximum: 4000}
   
@@ -41,4 +41,12 @@ class Ad < ApplicationRecord
       transition :archieved => :draft
     end
   end
+
+  def self.search(search)
+    if search
+      where(["title = ? and state = 'published'", "#{search}"])
+    else
+      where(state: 'published')
+    end
+  end  
 end

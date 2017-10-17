@@ -1,19 +1,15 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
   before_action :set_types, only: [:show, :edit, :new, :index, :create]
+  helper_method :sort_column, :sort_direction
   load_and_authorize_resource
 
-  def personal_filter
-    @personal_filter ||= Ad.ransack(params[:q])
-    if params[:q]
-      @myads ||= @personal_filter.result.where(user: current_user).includes(:user, :type).order('created_at').reverse_order.page(params[:page])
-    end
-  end
-
   def index
-    @ads            = Ad.where(user: current_user).includes(:user, :type).page(params[:page])
-    @general_filter = Ad.ransack(params[:q])
-    @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])   
+   # @ads            = Ad.where(user: current_user).includes(:user, :type).page(params[:page])
+   # @general_filter = Ad.ransack(params[:q])
+   # @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])   
+   # AJAX
+    @ajax = Ad.search(params[:search]).order(sort_column + " " + sort_direction).page(params[:page]) 
   end
 
   def show
@@ -75,5 +71,13 @@ class AdsController < ApplicationController
 
   def resource_params
     params.require(:ad).permit(:title, :body, :type_id, :image, :state, pictures_attributes: [:id, :image_src, :done, :_destroy])
+  end
+
+  def sort_column
+    Ad.column_names.include?(params[:sort]) ? params[:sort] : 'title'
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 end
