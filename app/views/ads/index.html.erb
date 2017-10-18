@@ -1,0 +1,12 @@
+<hh> <%= t('ads.index.heading') %></hh>
+
+<%= form_tag ads_path, method: :get, remote: true, data: {type: :html}, id: 'ajax_search' do %>
+	<p>
+    <%= text_field_tag :ajax_search, params[:search] %>
+    <%= submit_tag "Search", :title => nil %>
+  </p>
+	<div id="ajax">
+		<%= render 'ajax' %>
+	</div>
+<% end %>
+

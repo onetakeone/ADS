@@ -2,6 +2,7 @@ class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
   before_action :set_types, only: [:show, :edit, :new, :index, :create]
   helper_method :sort_column, :sort_direction
+  respond_to :html, :js
   load_and_authorize_resource
 
   def index
@@ -9,8 +10,13 @@ class AdsController < ApplicationController
    # @general_filter = Ad.ransack(params[:q])
    # @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])   
    # AJAX
-    @ajax = Ad.search(params[:search]).order(sort_column + " " + sort_direction).page(params[:page]) 
+    ajax
   end
+
+  def ajax
+    @ajax = Ad.search(params[:search]).order(sort_column + " " + sort_direction).page(params[:page])
+  end
+
 
   def show
   end

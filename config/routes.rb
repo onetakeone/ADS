@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'users/ads/:id', to: 'users#ads', as: :user_ads
   delete 'users/:id', to: 'users#destroy', as: :destroy_user
 
+  post 'ads', to: 'ads#ajax'
+
   resources :ads
   resources :types
 end
