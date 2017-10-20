@@ -2,21 +2,30 @@ class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
   before_action :set_types, only: [:show, :edit, :new, :index, :create]
   helper_method :sort_column, :sort_direction
-  respond_to :html, :js
   load_and_authorize_resource
+  include ApplicationHelper
+  respond_to :html, :js
 
   def index
    # @ads            = Ad.where(user: current_user).includes(:user, :type).page(params[:page])
    # @general_filter = Ad.ransack(params[:q])
    # @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])   
    # AJAX
-    ajax
+    ajax   
   end
 
   def ajax
-    @ajax = Ad.search(params[:search]).order(sort_column + " " + sort_direction).page(params[:page])
+    @ajax = Ad.search(params_search[:search]).order(sort_column + " " + sort_direction).page(params[:page])
+    if request.xhr?
+      respond_to do |format|
+        format.js 
+      end
+    else
+      respond_to do |f|
+        f.html
+      end
+    end
   end
-
 
   def show
   end
@@ -85,5 +94,11 @@ class AdsController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+
+  def params_search    
+    params.permit(:released_at, :page, :sort, :utf8, :title, 
+                  :body, :type_id, :search,
+                  :authenticity_token, :commit, :direction, :_)
   end
 end

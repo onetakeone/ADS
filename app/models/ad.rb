@@ -44,7 +44,7 @@ class Ad < ApplicationRecord
 
   def self.search(search)
     if search
-      where(["title = ? and state = 'published'", "#{search}"])
+      search == '' ? where(state: 'published') : where(["title = ? and state = 'published'", "#{search}"])
     else
       where(state: 'published')
     end

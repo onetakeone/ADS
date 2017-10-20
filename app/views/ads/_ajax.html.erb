@@ -1,0 +1,22 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<table>
+  <tr>
+    <th>
+    	<%= sortable 'title', 'Title ' %>
+    	<%= sortable 'created_at', ' Released' %>
+    </th>
+  </tr>
+  <% @ajax.each do |p| %>
+    <tr>
+      <td>
+      	<%= p.title %>
+      </td>
+      <td>
+      	<%= p.created_at.strftime("%B %e, %Y") %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @ajax, :theme => 'twitter-bootstrap-3', pagination_class: "pagination justify-content-sm-center" %>
