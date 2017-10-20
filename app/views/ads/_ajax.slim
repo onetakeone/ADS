@@ -1,0 +1,42 @@
+= hidden_field_tag :direction, params[:direction] 
+= hidden_field_tag :sort, params[:sort] 
+sort by:
+div class='btn btn-link btn-lg'
+  = sortable 'title', 'Title ' 
+div class='btn btn-link btn-lg'
+  = sortable 'created_at', ' Released' 
+table  
+  tr
+    - @ajax.each do |ad| 
+      table
+        tr
+          td
+            img src="#{ad.image}"
+          td
+            table
+              tr
+                td = ad.state.upcase
+              tr
+                td
+                  h2  = ad.type.ad_type
+              tr
+                td
+                  h3
+                    b = ad.title
+              tr
+                td = ad.body
+              tr
+                td
+                  p
+                    i by:
+                    b = ad.user.username
+              tr 
+                td
+                  = ad.created_at.strftime("%B %e, %Y")     
+        tr
+          td
+            = link_to t('layout.show'), ad if can? :read, ad
+            = link_to t('layout.edit'), edit_ad_path(ad) if can? :update, ad
+            = link_to t('layout.destroy'), ad, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, ad 
+
+= paginate @ajax, :theme => 'twitter-bootstrap-3', pagination_class: "pagination justify-content-sm-center" 

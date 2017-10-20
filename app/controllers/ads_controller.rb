@@ -3,28 +3,21 @@ class AdsController < ApplicationController
   before_action :set_types, only: [:show, :edit, :new, :index, :create]
   helper_method :sort_column, :sort_direction
   load_and_authorize_resource
-  include ApplicationHelper
-  respond_to :html, :js
 
   def index
    # @ads            = Ad.where(user: current_user).includes(:user, :type).page(params[:page])
    # @general_filter = Ad.ransack(params[:q])
-   # @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])   
+   # @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])
    # AJAX
-    ajax   
+    ajax
+    respond_to do |format|
+      format.html
+      format.js { render :layout => false }
+    end
   end
 
   def ajax
-    @ajax = Ad.search(params_search[:search]).order(sort_column + " " + sort_direction).page(params[:page])
-    if request.xhr?
-      respond_to do |format|
-        format.js 
-      end
-    else
-      respond_to do |f|
-        f.html
-      end
-    end
+    @ajax = Ad.search(params_search[:search]).order(sort_column + " " + sort_direction).includes(:type, :user).page(params[:page])
   end
 
   def show
