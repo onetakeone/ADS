@@ -14,9 +14,9 @@ feature 'Admin' do
 
   scenario 'edit ad state' do
     user_sign_in
-    create_ad    
+    create_ad
     click_on I18n.t('layout.header.logout')
     admin_sign_in
-    admin_edit_state    
+    admin_edit_state
   end
 end

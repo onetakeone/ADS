@@ -1,13 +1,14 @@
+#
 class UsersController < ApplicationController
-  load_and_authorize_resource 
-  skip_authorize_resource :only => :ads
+  load_and_authorize_resource
+  skip_authorize_resource only: :ads
 
   def index
     @users = User.all.includes(:ads).page(params[:page])
   end
 
   def edit
-    @user = User.find(params[:id])    
+    @user = User.find(params[:id])
   end
 
   def new
@@ -40,10 +41,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy    
+  def destroy
     @user.destroy
     respond_to do |format|
-        format.html { redirect_to users_path, notice: t('users.notice.destroyed') }
+      format.html { redirect_to users_path, notice: t('users.notice.destroyed') }
     end
   end
 

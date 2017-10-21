@@ -1,10 +1,11 @@
+#
 class Ability
   include CanCan::Ability
 
-  def initialize user
+  def initialize(user)
     user ||= User.new
     if user.role.admin?
-      admin_roles 
+      admin_roles
     elsif user.role.user?
       user_roles user
     else
@@ -21,12 +22,12 @@ class Ability
     can :update, Ad
   end
 
-  def user_roles user
+  def user_roles(user)
     can :create, Ad, user_id: user.id
     can :read, Ad
     can :open, Ad
-    can :update, Ad, user_id: user.id, :state => ['draft', 'archieved']
-    can :destroy, Ad, user_id: user.id, :state => ['draft', 'new', 'verified', 'published']
+    can :update, Ad, user_id: user.id, state: %w[draft archieved]
+    can :destroy, Ad, user_id: user.id, state: %w[draft new verified published]
     cannot :edit, Type
   end
 

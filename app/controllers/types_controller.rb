@@ -1,3 +1,4 @@
+#
 class TypesController < ApplicationController
   load_and_authorize_resource
 
@@ -37,7 +38,7 @@ class TypesController < ApplicationController
     end
   end
 
-  def destroy 
+  def destroy
     @type.destroy
     respond_to do |format|
       format.html { redirect_to types_path, notice: t('types.notice.destroyed') }

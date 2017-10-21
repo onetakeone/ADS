@@ -1,9 +1,10 @@
+#
 class Ad < ApplicationRecord
   paginates_per 4
 
-  validates :title, presence: true, length: { maximum: 150}
-  validates :body, presence: true, length: { maximum: 4000}
-  
+  validates :title, presence: true, length: { maximum: 150 }
+  validates :body, presence: true, length: { maximum: 4000 }
+
   mount_uploader :image, ImageUploader
 
   belongs_to :user, optional: true
@@ -12,41 +13,41 @@ class Ad < ApplicationRecord
   has_many :pictures, inverse_of: :ad, dependent: :destroy
   accepts_nested_attributes_for :pictures, reject_if: :all_blank, allow_destroy: true
 
-  state_machine :state, :initial => :draft do
+  state_machine :state, initial: :draft do
     event :create do
-      transition :draft => :new
+      transition draft: :new
     end
-  
+
     event :deny do
-      transition :new => :denied
+      transition new: :denied
     end
 
     event :verify do
-      transition :new => :verified
+      transition new: :verified
     end
 
     event :kick do
-      transition :new => :deleted, :verified => :deleted
+      transition new: :deleted, verified: :deleted
     end
-  
+
     event :publish do
-      transition :verified => :published
+      transition verified: :published
     end
-     
+
     event :archieve do
-      transition :published => :archieved
+      transition published: :archieved
     end
-  
+
     event :resurrect do
-      transition :archieved => :draft
+      transition archieved: :draft
     end
   end
 
   def self.search(search)
     if search
-      search == '' ? where(state: 'published') : where(["title = ? and state = 'published'", "#{search}"])
+      search == '' ? where(state: 'published') : where(["title = ? and state = 'published'", search.to_s])
     else
       where(state: 'published')
     end
-  end  
+  end
 end

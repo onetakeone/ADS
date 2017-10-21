@@ -23,10 +23,10 @@ gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
 gem 'ransack'
 gem 'sass-rails', '~> 5.0'
-gem 'sprockets-rails'
 gem 'simple_form'
-gem 'sqlite3'
 gem 'slim'
+gem 'sprockets-rails'
+gem 'sqlite3'
 gem 'state_machines-activerecord'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
@@ -39,7 +39,7 @@ gem 'whenever'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'factory_girl_rails', '~> 4.0' # config.include FactoryGirl::Syntax::Methods - to rails_helper
   gem 'rake'
@@ -52,9 +52,9 @@ end
 group :development do
   gem 'bullet'
   gem 'ruby-growl'
-  gem 'xmpp4r'
   gem 'web-console', '>= 3.3.0'
+  gem 'xmpp4r'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

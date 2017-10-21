@@ -1,6 +1,7 @@
 require 'rails_helper'
 include ActiveModel::Validations
-# it { is_expected.to transition_from :archieved, to_state: :draft, on_event: :ressurect }
+# it { is_expected.to transition_from :archieved, to_state: :draft,
+#                     on_event: :ressurect }
 # why doesn't work?
 
 describe Ad do
@@ -23,7 +24,10 @@ describe Ad do
   end
 
   describe 'states' do
-    it { should have_states :draft, :new, :denied, :verified, :deleted, :archieved, :published }
+    it {
+      should have_states :draft, :new, :denied, :verified,
+                         :deleted, :archieved, :published
+    }
 
     describe 'Draft state events' do
       it { should be_draft }

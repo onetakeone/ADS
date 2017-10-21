@@ -1,27 +1,27 @@
+#
 class AdsController < ApplicationController
-  before_action :set_ad, only: [:show, :edit, :update, :destroy]
-  before_action :set_types, only: [:show, :edit, :new, :index, :create]
-  helper_method :sort_column, :sort_direction
+  before_action :set_ad, only: %i[show edit update destroy]
+  before_action :set_types, only: %i[show edit new index create]
   load_and_authorize_resource
+  helper_method :sort_column, :sort_direction
 
   def index
-   # @ads            = Ad.where(user: current_user).includes(:user, :type).page(params[:page])
-   # @general_filter = Ad.ransack(params[:q])
-   # @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])
-   # AJAX
+    # @ads            = Ad.where(user: current_user).includes(:user, :type).page(params[:page])
+    # @general_filter = Ad.ransack(params[:q])
+    # @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])
+    # AJAX
     ajax
     respond_to do |format|
       format.html
-      format.js { render :layout => false }
+      format.js { render layout: false }
     end
   end
 
   def ajax
-    @ajax = Ad.search(params_search[:search]).order(sort_column + " " + sort_direction).includes(:type, :user).page(params[:page])
+    @ajax = Ad.search(params_search[:search]).order(sort_column + ' ' + sort_direction).includes(:type, :user).page(params[:page])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @user = current_user
@@ -75,10 +75,10 @@ class AdsController < ApplicationController
   def options
     @options = []
     @types.each { |t| @options << [t.ad_type, t.id] }
-  end 
+  end
 
   def resource_params
-    params.require(:ad).permit(:title, :body, :type_id, :image, :state, pictures_attributes: [:id, :image_src, :done, :_destroy])
+    params.require(:ad).permit(:title, :body, :type_id, :image, :state, pictures_attributes: %i[id image_src done _destroy])
   end
 
   def sort_column
@@ -89,8 +89,8 @@ class AdsController < ApplicationController
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
-  def params_search    
-    params.permit(:released_at, :page, :sort, :utf8, :title, 
+  def params_search
+    params.permit(:released_at, :page, :sort, :utf8, :title,
                   :body, :type_id, :search,
                   :authenticity_token, :commit, :direction, :_)
   end

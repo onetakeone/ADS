@@ -9,7 +9,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20170920093342) do
+ActiveRecord::Schema.define(version: 20_170_920_093_342) do
   create_table 'ads', force: :cascade do |t|
     t.integer 'user_id'
     t.integer 'type_id'

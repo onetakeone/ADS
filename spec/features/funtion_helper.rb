@@ -1,7 +1,7 @@
 def admin_sign_in
   visit new_user_session_path
   admin = FactoryGirl.create(:admin)
-  login_as(admin) 
+  login_as(admin)
 end
 
 def admin_edit_state
@@ -47,4 +47,3 @@ def user_sign_in
   user = FactoryGirl.create(:user)
   login_as(user) # Sign in via Warden helper login_as
 end
-
