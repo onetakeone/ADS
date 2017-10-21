@@ -21,7 +21,7 @@ header
               = link_to t('layout.header.users'), users_path, class: 'btn btn-link btn-lg'
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.types'), types_path if can? :manage, Type, class: 'btn btn-link btn-lg'
+              = link_to t('layout.header.types'), types_path, class: 'btn btn-link btn-lg' if can? :manage, Type
 
     li.nav-item_dropdown
       a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' #{t'layout.header.session'}
@@ -34,12 +34,12 @@ header
             div#nav
               = link_to t('layout.header.register'), new_user_registration_path, class: 'btn btn-link btn-lg'
 
-        - if !current_user.nil?
+        - unless current_user.nil?
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.logout'), logout_path, method: :delete
+              = link_to t('layout.header.logout'), logout_path, method: :delete, class: 'btn btn-link btn-lg'
 
-    - if !current_user.nil?
+    - unless current_user.nil?
       li.nav-item_dropdown
         a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' = current_user.username.capitalize
         div.dropdown-menu
@@ -48,7 +48,5 @@ header
               = link_to t('layout.header.profile'), edit_user_registration_path, class: 'btn btn-link btn-lg'
           a.dropdown-item
             div#nav
-              = search_form_for @personal_filter do |f|
-                = f.submit t('ads.index.filter.myads'), class: 'btn btn-link btn-lg'
-                = f.hidden_field :user_username_cont, class: 'form-control col-lg-1', value: current_user.username
+              = link_to t('ads.index.filter.myads'), user_ads_path(current_user), class: 'btn btn-link btn-lg' 
                 
