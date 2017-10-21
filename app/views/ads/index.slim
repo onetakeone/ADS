@@ -1,8 +1,9 @@
 hh = t('ads.index.heading')
 
 = form_tag ads_path, method: :get, id: 'ads_search', remote: true do 
-	p
-    = text_field_tag :search, params[:search] 
-    = submit_tag "Search", title: nil 
+	div.col-lg-12
+		div.input-group		
+			= text_field_tag :search, params[:search], class: 'form-control col-lg-6'
+			= submit_tag "Search", title: nil, class: 'btn btn-primary btn-lg' 
 	div#ajax
 		= render 'ajax' 

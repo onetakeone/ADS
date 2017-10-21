@@ -2,14 +2,14 @@ FactoryGirl.define do
   factory :user do
     username 'user'
     role 'user'
-    email 'suer@suer'
+    email 'suer@suer.su'
     password 'useuseuse'
   end
 
   factory :admin, class: User do
     username 'admin'
     role 'admin'
-    email 'adm@adm'
+    email 'adm@adm.su'
     password 'admadmadm'
   end
 
@@ -17,7 +17,7 @@ FactoryGirl.define do
     id '48'
     username 'qwerty'
     role 'user'
-    email 'qwe@qwe'
+    email 'qwe@qwe.su'
     password 'qwerty'
   end
 
@@ -25,7 +25,7 @@ FactoryGirl.define do
     id '23'
     username 'writer1'
     role 'user'
-    email 'w1@qwe'
+    email 'w1@qwe.su'
     password 'qwerty'
   end
 
@@ -33,14 +33,14 @@ FactoryGirl.define do
     id '24'
     username 'writer2'
     role 'user'
-    email 'w2@qwe'
+    email 'w2@qwe.su'
     password 'qwerty'
   end
 
   factory :guest do
     username 'guest'
     role 'guest'
-    email 'guest@guest'
+    email 'guest@guest.su'
     password 'gueguegue'
   end
 end
