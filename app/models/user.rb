@@ -2,7 +2,7 @@ class User < ApplicationRecord
   paginates_per 4
   
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true, format: { with: /[a-z0-9'+_`-]*[a-z0-9'+_`-]+?*[a-z0-9'+_`-]+[@]+[a-z]+\.+[a-z]/ }
+  validates :email, presence: true, uniqueness: true, format: { with: /[a-z0-9'.+_`-]*[a-z0-9'+_`-]+?[a-z0-9'+_`-]+[@]+[a-z.]+\.+[a-z]+/ }
   
   has_many :ads, dependent: :destroy
 
