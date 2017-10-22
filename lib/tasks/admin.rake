@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path('./config/environment')
 namespace :adverts do
   desc 'Set ad state Verified to Published'

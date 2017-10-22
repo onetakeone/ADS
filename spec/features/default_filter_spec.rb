@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require './spec/features/funtion_helper.rb'
 include Warden::Test::Helpers

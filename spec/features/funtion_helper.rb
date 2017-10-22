@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def admin_sign_in
   visit new_user_session_path
   admin = FactoryGirl.create(:admin)

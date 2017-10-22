@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+#
 class CreateAds < ActiveRecord::Migration[5.1]
   def change
     create_table :ads do |t|

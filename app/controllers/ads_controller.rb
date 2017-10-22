@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 class AdsController < ApplicationController
   before_action :set_ad, only: %i[show edit update destroy]
@@ -6,10 +8,6 @@ class AdsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    # @ads            = Ad.where(user: current_user).includes(:user, :type).page(params[:page])
-    # @general_filter = Ad.ransack(params[:q])
-    # @search         = @general_filter.result.where(state: 'published').includes(:user, :type).page(params[:page])
-    # AJAX
     ajax
     respond_to do |format|
       format.html
@@ -18,7 +16,10 @@ class AdsController < ApplicationController
   end
 
   def ajax
-    @ajax = Ad.search(params_search[:search]).order(sort_column + ' ' + sort_direction).includes(:type, :user).page(params[:page])
+    @ajax = Ad.search(params_search[:search])
+              .order(sort_column + ' ' + sort_direction)
+              .includes(:type, :user)
+              .page(params[:page])
   end
 
   def show; end
@@ -38,7 +39,10 @@ class AdsController < ApplicationController
   def create
     respond_to do |format|
       if @ad.save
-        format.html { redirect_to user_ads_path(current_user), notice: t('ads.notice.created') }
+        format.html do
+          redirect_to user_ads_path(current_user),
+                      notice: t('ads.notice.created')
+        end
       else
         format.html { render :new }
       end
@@ -48,7 +52,10 @@ class AdsController < ApplicationController
   def update
     respond_to do |format|
       if @ad.update(resource_params)
-        format.html { redirect_to ads_path, notice: t('ads.notice.updated') }
+        format.html do
+          redirect_to ads_path,
+                      notice: t('ads.notice.updated')
+        end
       else
         format.html { render :edit }
       end
@@ -58,7 +65,10 @@ class AdsController < ApplicationController
   def destroy
     @ad.destroy
     respond_to do |format|
-      format.html { redirect_to user_ads_path(@ad.user), notice: t('ads.notice.destroyed') }
+      format.html do
+        redirect_to user_ads_path(@ad.user),
+                    notice: t('ads.notice.destroyed')
+      end
     end
   end
 
@@ -78,7 +88,9 @@ class AdsController < ApplicationController
   end
 
   def resource_params
-    params.require(:ad).permit(:title, :body, :type_id, :image, :state, pictures_attributes: %i[id image_src done _destroy])
+    params.require(:ad)
+          .permit(:title, :body, :type_id, :image, :state,
+                  pictures_attributes: %i[id image_src done _destroy])
   end
 
   def sort_column

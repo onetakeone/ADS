@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 class Ad < ApplicationRecord
   paginates_per 4
@@ -11,7 +13,8 @@ class Ad < ApplicationRecord
   belongs_to :type
 
   has_many :pictures, inverse_of: :ad, dependent: :destroy
-  accepts_nested_attributes_for :pictures, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :pictures,
+                                reject_if: :all_blank, allow_destroy: true
 
   state_machine :state, initial: :draft do
     event :create do

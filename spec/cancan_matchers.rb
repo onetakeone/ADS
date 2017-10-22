@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Custom rspec matcher for testing CanCan abilities.
 # Originally inspired by https://github.com/ryanb/cancan/wiki/Testing-Abilities
 #

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 include ActiveModel::Validations
 # it { is_expected.to transition_from :archieved, to_state: :draft,

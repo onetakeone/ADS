@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'ads#index'
   devise_for :users
@@ -11,9 +13,6 @@ Rails.application.routes.draw do
   post 'users/new', to: 'users#create'
   get 'users/ads/:id', to: 'users#ads', as: :user_ads
   delete 'users/:id', to: 'users#destroy', as: :destroy_user
-
-  # post 'ads', to: 'ads#ajax'
-  # match "/ads/index.js", :controller => 'ads', :action => 'index', :format => :js
 
   resources :ads
   resources :types

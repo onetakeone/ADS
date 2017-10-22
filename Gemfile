@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -5,7 +7,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'bcrypt', '>= 3.1.2', platforms: :ruby # (gem install bcrypt --platform=ruby)
+# (gem install bcrypt --platform=ruby)
+gem 'bcrypt', '>= 3.1.2', platforms: :ruby
 gem 'bootstrap-kaminari-views'
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'cancancan', '~> 2.0'
@@ -41,7 +44,8 @@ gem 'whenever'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '~> 2.13'
-  gem 'factory_girl_rails', '~> 4.0' # config.include FactoryGirl::Syntax::Methods - to rails_helper
+  # config.include FactoryGirl::Syntax::Methods - to rails_helper
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'rake'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
