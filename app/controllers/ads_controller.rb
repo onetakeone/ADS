@@ -53,8 +53,12 @@ class AdsController < ApplicationController
     respond_to do |format|
       if @ad.update(resource_params)
         format.html do
-          redirect_to ads_path,
-                      notice: t('ads.notice.updated')
+          if current_user.role == 'admin'
+            redirect_to users_path
+          else
+            redirect_to ads_path,
+                        notice: t('ads.notice.updated')
+          end
         end
       else
         format.html { render :edit }

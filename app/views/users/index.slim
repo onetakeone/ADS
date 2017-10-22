@@ -1,6 +1,7 @@
 hh = t('users.index.heading')
 br
-button class='btn btn-primary btn-lg' = link_to t('users.index.create'), users_new_path
+= link_to t('users.index.create'), users_new_path, class: 'btn btn-primary btn-lg' 
+
 hr
 - @users.each do |u|
 	table.table-sm
@@ -12,8 +13,7 @@ hr
 				i = u.role
 				br
 				- if can? :edit, u
-					button type='button' class='btn btn-secondary btn-sm'
-						= link_to t('users.index.edit'), controller: :users, action: :edit, id: u.id
+					= link_to t('users.index.edit'), { controller: :users, action: :edit, id: u.id}, class: 'btn btn-success btn-sm'
 			td
 				table id="ads"
 					tr
