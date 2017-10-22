@@ -1,6 +1,6 @@
 hh = t('types.index.heading')
 br
-button type='button' class='btn btn-primary btn-lg' = link_to t('types.index.create'), new_type_path
+= link_to t('types.index.create'), new_type_path, class: 'btn btn-primary btn-lg'
 hr
 table.table-sm
 	- @types.each do |t| 
