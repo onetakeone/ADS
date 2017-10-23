@@ -3,4 +3,4 @@
   	= f.input :ad_type, label: t('types.edit.type'), required: false
   = f.submit t('layout.save'), class: 'btn btn-primary btn-lg' 
 br
-= link_to t('layout.return'), types_path
+= linkHelper('layout.return', types_path)

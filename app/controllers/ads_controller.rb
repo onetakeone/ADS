@@ -6,6 +6,7 @@ class AdsController < ApplicationController
   before_action :set_types, only: %i[show edit new index create]
   load_and_authorize_resource
   helper_method :sort_column, :sort_direction
+  helper LinkHelper
 
   def index
     ajax
