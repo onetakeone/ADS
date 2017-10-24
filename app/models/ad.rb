@@ -18,12 +18,16 @@ class Ad < ApplicationRecord
   accepts_nested_attributes_for :pictures,
                                 reject_if: :all_blank, allow_destroy: true
 
-  # Search method.
+  # Search methods.
   scope :published, -> { where(state: 'published') }
 
   def self.search(search)    
     search.nil? ? published : search && search == '' ? published : where("to_tsvector('english', title || ' ' || body) @@ to_tsquery(?)", search)
   end  
+
+  def self.type_filter(type_filter)     
+    type_filter.nil? ? all : where(type_id: type_filter)
+  end
 
   # State machine.
   state_machine :state, initial: :draft do

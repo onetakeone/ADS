@@ -23,8 +23,8 @@ $(function() {
     $.getScript(this.href);
     return false;
   });
-  $("#ads_search input").keyup(function() {
-    $.get($("#ads_search").attr("action"), $("#ads_search").serialize(), null, "script");
-    return false;
-  });
+	$("#ads_search").keyup(function() {		
+	  $.get($("#ads_search").attr("action"), $("#ads_search").serialize(), null, "script");
+	  return false;
+	});
 });

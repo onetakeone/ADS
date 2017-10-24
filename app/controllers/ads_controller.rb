@@ -17,12 +17,12 @@ class AdsController < ApplicationController
   end
 
   def ajax
-    data = Ad.where(state: 'published')
-    @ajax = data.search(params_search[:search])
-              .order(sort_column + ' ' + sort_direction)
-              .includes(:type, :user)
-              .page(params[:page])
-  end
+    data = Ad.where(state: 'published').type_filter(params_search[:type_filter])
+    @ajax = data.search(params_search[:search]).
+                 order(sort_column + ' ' + sort_direction).
+                 includes(:type, :user).
+                 page(params[:page])
+    end
 
   def show; end
 
@@ -109,7 +109,7 @@ class AdsController < ApplicationController
 
   def params_search
     params.permit(:released_at, :page, :sort, :utf8, :title,
-                  :body, :type_id, :search,
+                  :body, :type_id, :search, :type_filter,
                   :authenticity_token, :commit, :direction, :_)
   end
 end
