@@ -18,17 +18,6 @@ class Ad < ApplicationRecord
   accepts_nested_attributes_for :pictures,
                                 reject_if: :all_blank, allow_destroy: true
 
-  # Search methods.
-  scope :published, -> { where(state: 'published') }
-
-  def self.search(search)    
-    search.nil? ? published : search && search == '' ? published : where("to_tsvector('english', title || ' ' || body) @@ to_tsquery(?)", search)
-  end  
-
-  def self.type_filter(type_filter)     
-    type_filter.nil? ? all : where(type_id: type_filter)
-  end
-
   # State machine.
   state_machine :state, initial: :draft do
     event :create do
@@ -58,5 +47,23 @@ class Ad < ApplicationRecord
     event :resurrect do
       transition archieved: :draft
     end
-  end  
+  end
+
+  # Search methods.
+  include PgSearch
+  pg_search_scope :search_engine, against: %i[title body],
+                                  using: { tsearch: { prefix: true, any_word: true } }
+  # pg_search_scope :search_type, against: [:type_id]
+
+  scope :published, -> { where(state: 'published') }
+
+  def self.search(search)
+    search.nil? ? published : search && search == '' ? published : search_engine(search)
+    # search.nil? ? published : search && search == '' ? published : where("to_tsvector('english', title || ' ' || body) @@ to_tsquery(?)", search)
+  end
+
+  def self.type_filter(type_filter)
+    # type_filter.nil? ? all : search_type(type_filter)
+    type_filter.nil? ? all : where(type_id: type_filter)
+  end
 end

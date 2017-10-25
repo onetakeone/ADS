@@ -17,12 +17,13 @@ class AdsController < ApplicationController
   end
 
   def ajax
-    data = Ad.where(state: 'published').type_filter(params_search[:type_filter])
-    @ajax = data.search(params_search[:search]).
-                 order(sort_column + ' ' + sort_direction).
-                 includes(:type, :user).
-                 page(params[:page])
-    end
+    @ajax = Ad.where(state: 'published')
+              .type_filter(params[:type_filter])
+              .search(params_search[:search])
+              .order(sort_column + ' ' + sort_direction)
+              .includes(:type, :user)
+              .page(params[:page])
+  end
 
   def show; end
 

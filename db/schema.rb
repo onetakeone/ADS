@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,58 +12,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170920093342) do
-
+ActiveRecord::Schema.define(version: 20_171_025_112_316) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "ads", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "type_id"
-    t.string "state"
-    t.string "access_state"
-    t.string "title"
-    t.text "body"
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index "to_tsvector('english'::regconfig, (((title)::text || ' '::text) || body))", name: "ads_idx", using: :gin
-    t.index ["body"], name: "index_ads_on_body"
-    t.index ["title"], name: "index_ads_on_title"
+  create_table 'ads', force: :cascade do |t|
+    t.integer 'user_id'
+    t.integer 'type_id'
+    t.string 'state'
+    t.string 'access_state'
+    t.string 'title'
+    t.text 'body'
+    t.string 'image'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index "to_tsvector('english'::regconfig, (((title)::text || ' '::text) || body))", name: 'ads_idx', using: :gin
+    t.index ['body'], name: 'index_ads_on_body'
+    t.index ['title'], name: 'index_ads_on_title'
   end
 
-  create_table "pictures", force: :cascade do |t|
-    t.string "image_src"
-    t.bigint "ad_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ad_id"], name: "index_pictures_on_ad_id"
+  create_table 'pg_search_documents', force: :cascade do |t|
+    t.text 'content'
+    t.string 'searchable_type'
+    t.bigint 'searchable_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index %w[searchable_type searchable_id], name: 'index_pg_search_documents_on_searchable_type_and_searchable_id'
   end
 
-  create_table "types", force: :cascade do |t|
-    t.string "ad_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'pictures', force: :cascade do |t|
+    t.string 'image_src'
+    t.bigint 'ad_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['ad_id'], name: 'index_pictures_on_ad_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "role"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  create_table 'types', force: :cascade do |t|
+    t.string 'ad_type'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "pictures", "ads"
+  create_table 'users', force: :cascade do |t|
+    t.string 'username'
+    t.string 'role'
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.integer 'sign_in_count', default: 0, null: false
+    t.datetime 'current_sign_in_at'
+    t.datetime 'last_sign_in_at'
+    t.string 'current_sign_in_ip'
+    t.string 'last_sign_in_ip'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  end
+
+  add_foreign_key 'pictures', 'ads'
 end
