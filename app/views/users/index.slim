@@ -1,6 +1,6 @@
 hh = t('users.index.heading')
 br
-= link_to t('users.index.create'), users_new_path, class: 'btn btn-primary btn-lg' 
+= link_to t('users.index.create'), users_new_path, class: b_suc
 
 hr
 - @users.each do |u|
@@ -8,14 +8,12 @@ hr
 		tr
 			td
 				h1
-					b = u.username.capitalize
-				b role:
-				i = u.role
-				br
-				- if can? :edit, u
-					= link_to t('users.index.edit'), { controller: :users, action: :edit, id: u.id}, class: 'btn btn-success btn-sm'
+						b = u.username.capitalize
+				h2 
+					i = u.role
+				= link_to t('users.index.edit'), { controller: :users, action: :edit, id: u.id}, class: b_pri if can? :edit, u
 			td
-				table id="ads"
+				table
 					tr
 						- u.ads.each do |a|
 							td
@@ -26,7 +24,7 @@ hr
 								u = link_to a.state.capitalize, edit_ad_path(a)
 		tr
 			td
-				= link_to t('layout.destroy'), destroy_user_path(u), method: :delete, data: { confirm: t('layout.confirm') } if can? :destroy, u
+			  = destroyHelper_u(u)				
 	hr
 
-= paginate @users, theme: 'twitter-bootstrap-3', pagination_class: 'pagination justify-content-sm-center'
+= pagination(@users)

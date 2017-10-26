@@ -1,5 +1,5 @@
-div.nested-fields
-	= f.input :image_src, label: t('ads.new.attach_image'), class: 'btn btn-success btn-sm'
+div class = 'nested-fields'
+	= f.input :image_src, label: t('ads.new.attach_image')
 	= f.hidden_field :image_src_cache 
 	p.mb-4
-		= link_to_remove_association t('ads.new.remove_image'), f, class: 'btn btn-warning btn-sm'  	
+		= link_to_remove_association t('ads.new.remove_image'), f, class: b_war

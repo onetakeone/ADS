@@ -69,9 +69,9 @@ en:
       title: 'Title'
       advert: 'Advertisement'
       icon: 'Icon'
-      add_picture: 'Add Picture'
-      attach_image: 'Attach Image'
-      remove_image: 'Remove Image'
+      add_picture: 'Attach Image'
+      attach_image: 'Image:'
+      remove_image: 'Remove'
     edit:
       heading: 'Edit Ad'
     form:

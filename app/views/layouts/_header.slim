@@ -2,7 +2,7 @@ header
   div.row   
     div.col-lg-1_align-self-start
       div.input-group   
-        = link_to 'home', root_path, class: 'btn btn-light btn-lg', id: 'home'
+        = link_to 'Home', root_path, class: 'btn btn-light btn-lg', id: 'home'
 
     ul class='nav nav-pills' 
       li.nav-item_dropdown
@@ -10,12 +10,12 @@ header
         div.dropdown-menu
           a.dropdown-item
             div#nav
-              = link_to t('layout.header.adverts'), ads_path, class: 'btn btn-link btn-lg'
+              = link_to t('layout.header.adverts'), ads_path, class: b_link
 
           - if can? :create, Ad
             a.dropdown-item
               div#nav
-                = link_to t('layout.header.create_ad'), new_ad_path, class: 'btn btn-link btn-lg'
+                = link_to t('layout.header.create_ad'), new_ad_path, class: b_link
 
       - if can? :manage, User
         li.nav-item_dropdown
@@ -23,10 +23,10 @@ header
           div.dropdown-menu
             a.dropdown-item
               div#nav
-                = link_to t('layout.header.users'), users_path, class: 'btn btn-link btn-lg'
+                = link_to t('layout.header.users'), users_path, class: b_link
             a.dropdown-item
               div#nav
-                = link_to t('layout.header.types'), types_path, class: 'btn btn-link btn-lg' if can? :manage, Type
+                = link_to t('layout.header.types'), types_path, class: b_link if can? :manage, Type
 
       li.nav-item_dropdown
         a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' #{t'layout.header.session'}
@@ -34,15 +34,15 @@ header
           - if current_user.nil?
             a.dropdown-item
               div#nav
-                = link_to t('layout.header.login'), new_user_session_path, class: 'btn btn-link btn-lg'
+                = link_to t('layout.header.login'), new_user_session_path, class: b_link
             a.dropdown-item
               div#nav
-                = link_to t('layout.header.register'), new_user_registration_path, class: 'btn btn-link btn-lg'
+                = link_to t('layout.header.register'), new_user_registration_path, class: b_link
 
           - unless current_user.nil?
             a.dropdown-item
               div#nav
-                = link_to t('layout.header.logout'), logout_path, method: :delete, class: 'btn btn-link btn-lg'
+                = link_to t('layout.header.logout'), logout_path, method: :delete, class: b_link
 
       - unless current_user.nil?
         li.nav-item_dropdown
@@ -50,8 +50,8 @@ header
           div.dropdown-menu
             a.dropdown-item
               div#nav
-                = link_to t('layout.header.profile'), edit_user_registration_path, class: 'btn btn-link btn-lg'
+                = link_to t('layout.header.profile'), edit_user_registration_path, class: b_link
             a.dropdown-item
               div#nav
-                = link_to t('ads.index.filter.myads'), user_ads_path(current_user), class: 'btn btn-link btn-lg' 
+                = link_to t('ads.index.filter.myads'), user_ads_path(current_user), class: b_link 
                 

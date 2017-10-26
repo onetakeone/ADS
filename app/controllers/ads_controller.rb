@@ -6,7 +6,6 @@ class AdsController < ApplicationController
   before_action :set_types, only: %i[show edit new index create]
   load_and_authorize_resource
   helper_method :sort_column, :sort_direction
-  helper LinkHelper
 
   def index
     ajax
@@ -101,16 +100,16 @@ class AdsController < ApplicationController
   end
 
   def sort_column
-    Ad.column_names.include?(params[:sort]) ? params[:sort] : 'title'
+    Ad.column_names.include?(params[:sort]) ? params[:sort] : 'created_at'
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
   end
 
   def params_search
-    params.permit(:released_at, :page, :sort, :utf8, :title,
-                  :body, :type_id, :search, :type_filter,
-                  :authenticity_token, :commit, :direction, :_)
+    params.permit(:released_at, :page, :sort, :utf8, :title, :body, :type_id,
+                  :search, :type_filter, :direction, :_, :authenticity_token,
+                  :commit)
   end
 end

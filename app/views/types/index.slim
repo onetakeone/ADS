@@ -1,6 +1,6 @@
 hh = t('types.index.heading')
 br
-= link_to t('types.index.create'), new_type_path, class: 'btn btn-primary btn-lg'
+= link_to t('types.index.create'), new_type_path, class: b_suc
 hr
 table.table-sm
 	- @types.each do |t| 
@@ -11,5 +11,5 @@ table.table-sm
 			td
 				- if can? :manage, t
 					p
-						= link_to t('layout.edit'), edit_type_path(t)
-						= link_to t('layout.destroy'), t, method: :delete, data: { confirm: t('layout.confirm') }
+						= editHelper_t(t)
+						= destroyHelper(t)
