@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 
+#
 require 'rails_helper'
 require './spec/features/funtion_helper.rb'
 include Warden::Test::Helpers
 
 feature 'Admin' do
-  scenario 'sign in as admin' do
+  scenario 'signs in as admin' do
     admin_sign_in
   end
 
-  scenario 'edit user role' do
+  scenario 'edits user role' do
+    FactoryGirl.create(:user)
     admin_sign_in
     edit_role
   end
 
-  scenario 'edit ad state' do
+  scenario 'edits advert state' do
     user_sign_in
     create_ad
     click_on I18n.t('layout.header.logout')
