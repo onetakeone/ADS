@@ -2,11 +2,10 @@
 
 #
 require 'rails_helper'
-require './spec/features/funtion_helper.rb'
 include Warden::Test::Helpers
 
 feature 'Filter' do
-  scenario 'shows advert matching to the query' do
+  scenario 'retrieves advert matching to the query' do
     @ads = FactoryGirl.create_list(:published, 2)
     visit '/ads/'
     fill_in 'search', with: @ads[1][:title]
@@ -15,13 +14,25 @@ feature 'Filter' do
     expect(page).to have_no_content @ads[0][:title]
   end
 
-  scenario 'show advert matching to the type' do
-    @ada = FactoryGirl.create(:published)
-    @adb = FactoryGirl.create(:published)
+  scenario 'retrieves advert matching to the type' do
+    type = FactoryGirl.create(:type, ad_type: 'type', id: 1)
+    searchable_ad = FactoryGirl.create(:published, type_id: 1)
+    secondary_ad = FactoryGirl.create(:published)
     visit '/ads'
-    check @ada.type.ad_type
-    # click_on "Search"
-    expect(page).to have_content @ada.body
-    # expect(page).to have_no_content @adb.body
+    check 'type'
+    click_on 'search_button'
+    expect(page).to have_content searchable_ad.body
+    expect(page).to have_no_content secondary_ad.body
+  end
+
+  scenario 'sorts adverts by title' do
+    first_ad = FactoryGirl.create(:published, title: 'AAA')
+    second_ad = FactoryGirl.create(:published, title: 'BBB')
+    third_ad = FactoryGirl.create(:published, title: 'CCC')
+    visit '/ads'
+    click_on 'Title'
+    expect(page).to have_text /AAA.+BBB.+CCC/
+    click_on 'Title'
+    expect(page).to have_text /CCC.+BBB.+AAA/
   end
 end

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+#
 FactoryGirl.define do
+  # Advert factories
+  #
   factory :ad do
     title { Faker::Lorem.word }
     body  { Faker::Lorem.sentence }
@@ -12,11 +15,14 @@ FactoryGirl.define do
   factory :published, class: Ad do
     title { Faker::Book.unique.title }
     body  { Faker::Lorem.unique.sentence }
+    created_at { Faker::Time.between(DateTime.now - 9, DateTime.now) }
     state 'published'
     type
     user
   end
 
+  # User facories
+  #
   factory :user do
     username { Faker::Name.name }
     email { Faker::Internet.email }
@@ -27,7 +33,8 @@ FactoryGirl.define do
         ads_count(3)
       end
       after(:create) do |user, var|
-        create_list(:ad, var.ads_count, user: user, id: [1..3], title: Faker::Book.unique.title)
+        create_list(:ad, var.ads_count, user: user, id: [1..3], 
+                    title: Faker::Book.unique.title)
       end
     end
   end
@@ -39,6 +46,8 @@ FactoryGirl.define do
     password { Faker::Internet.password(6) }
   end
 
+  # Secondary factories
+  #
   factory :type do
     ad_type { Faker::Lorem.unique.word }
     factory :type_with_ads do
@@ -52,44 +61,7 @@ FactoryGirl.define do
   end
 
   factory :picture do
-    img_src { Rack::Test::UploadedFile.new(Rails.root.join(Faker::Avatar.image), 'image/jpeg') }
+    img_src { Rack::Test::UploadedFile.new(Rails.root.join(Faker::Avatar.image), 
+              'image/jpeg') }
   end
 end
-
-# factory :user do
-#   username 'user'
-#   role 'user'
-#   email 'suer@suer.su'
-#   password 'useuseuse'
-# end
-
-# factory :writer, class: User do
-#   id '48'
-#   username 'qwerty'
-#   role 'user'
-#   email 'qwe@qwe.su'
-#   password 'qwerty'
-# end
-
-# factory :writer_one, class: User do
-#   id '23'
-#   username 'writer1'
-#   role 'user'
-#   email 'w1@qwe.su'
-#   password 'qwerty'
-# end
-
-# factory :writer_two, class: User do
-#   id '24'
-#   username 'writer2'
-#   role 'user'
-#   email 'w2@qwe.su'
-#   password 'qwerty'
-# end
-
-# factory :guest do
-#   username 'guest'
-#   role 'guest'
-#   email 'guest@guest.su'
-#   password 'gueguegue'
-# end

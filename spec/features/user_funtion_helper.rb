@@ -11,7 +11,7 @@ end
 def edit_role
   visit users_path
   expect(page).to have_content I18n.t('users.index.heading')
-  first('h2').click_link(I18n.t('users.index.edit'))
+  first('td').click_link(I18n.t('users.index.edit'))
   expect(page).to have_content I18n.t('users.edit.heading')
   select 'guest', from: 'Role'
   click_on I18n.t('layout.save')

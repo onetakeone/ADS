@@ -2,7 +2,7 @@
 
 #
 require 'rails_helper'
-require './spec/features/funtion_helper.rb'
+require './spec/features/user_funtion_helper.rb'
 include Warden::Test::Helpers
 
 feature 'User' do

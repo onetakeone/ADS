@@ -27,4 +27,8 @@ $(function() {
 	  $.get($("#ads_search").attr("action"), $("#ads_search").serialize(), null, "script");
 	  return false;
 	});
+	// $("#search_button").click(function(){
+	// 	$("#search_button").prop('value',"Search "+count.value);
+	// });
 });
+
