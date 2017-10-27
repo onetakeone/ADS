@@ -15,7 +15,7 @@ feature 'Filter' do
   end
 
   scenario 'retrieves advert matching to the type' do
-    type = FactoryGirl.create(:type, ad_type: 'type', id: 1)
+    FactoryGirl.create(:type, ad_type: 'type', id: 1)
     searchable_ad = FactoryGirl.create(:published, type_id: 1)
     secondary_ad = FactoryGirl.create(:published)
     visit '/ads'
@@ -26,9 +26,9 @@ feature 'Filter' do
   end
 
   scenario 'sorts adverts by title' do
-    first_ad = FactoryGirl.create(:published, title: 'AAA')
-    second_ad = FactoryGirl.create(:published, title: 'BBB')
-    third_ad = FactoryGirl.create(:published, title: 'CCC')
+    FactoryGirl.create(:published, title: 'AAA')
+    FactoryGirl.create(:published, title: 'BBB')
+    FactoryGirl.create(:published, title: 'CCC')
     visit '/ads'
     click_on 'Title'
     expect(page).to have_text /AAA.+BBB.+CCC/

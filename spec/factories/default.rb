@@ -33,8 +33,8 @@ FactoryGirl.define do
         ads_count(3)
       end
       after(:create) do |user, var|
-        create_list(:ad, var.ads_count, user: user, id: [1..3], 
-                    title: Faker::Book.unique.title)
+        create_list(:ad, var.ads_count, user: user, id: [1..3],
+                                        title: Faker::Book.unique.title)
       end
     end
   end
@@ -61,7 +61,9 @@ FactoryGirl.define do
   end
 
   factory :picture do
-    img_src { Rack::Test::UploadedFile.new(Rails.root.join(Faker::Avatar.image), 
-              'image/jpeg') }
+    img_src do
+      Rack::Test::UploadedFile.new(Rails.root.join(Faker::Avatar.image),
+                                   'image/jpeg')
+    end
   end
 end

@@ -35,8 +35,8 @@ table
                   = ad.created_at.strftime("%B %e, %Y")     
         tr
           td
-            = showHelper(ad)
-            = editHelper(ad)
-            = destroyHelper(ad)
+            = show_h(ad)
+            = edit_h(ad)
+            = destroy_h(ad)
 
 = pagination(@ajax)
