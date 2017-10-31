@@ -47,6 +47,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '~> 2.13'
   # config.include FactoryGirl::Syntax::Methods - to rails_helper
+  gem 'dotenv-rails'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'rake'
   gem 'rspec-rails'
