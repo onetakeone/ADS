@@ -37,7 +37,7 @@ end
 
 def create_ad
   type = FactoryGirl.create(:type)
-  visit '/ads/new'
+  visit new_ad_path
   select type.ad_type, from: 'Type'
   fill_in 'Title', with: Faker::Lorem.word
   fill_in 'Advert', with: Faker::Lorem.sentence

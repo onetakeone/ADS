@@ -1,9 +1,5 @@
-header
+header 
   div.row   
-    div.col-lg-1_align-self-start
-      div.input-group   
-        = link_to 'Home', root_path, class: 'btn btn-light btn-lg', id: 'home'
-
     ul class='nav nav-pills' 
       li.nav-item_dropdown
         a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false' #{t'layout.header.adverts'}
@@ -54,4 +50,13 @@ header
             a.dropdown-item
               div#nav
                 = link_to t('ads.index.filter.myads'), user_ads_path(current_user), class: b_link 
+    p#ads
+      = t('layout.header.lang')
+      - if I18n.locale == I18n.default_locale
+        b = link_to t('layout.header.rus'), {:locale => 'ru'}
+      - else
+        b = link_to t('layout.header.eng'), {:locale => 'en'}
+
+
+
                 

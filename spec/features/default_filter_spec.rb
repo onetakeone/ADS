@@ -5,9 +5,13 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 feature 'Filter' do
+  before :each do
+    default_url_options[ :locale ] = 'en'
+  end
+
   scenario 'retrieves advert matching to the query' do
     @ads = FactoryGirl.create_list(:published, 2)
-    visit '/ads/'
+    visit ads_path
     fill_in 'search', with: @ads[1][:title]
     click_on 'search_button'
     expect(page).to have_content @ads[1][:title]
@@ -18,7 +22,7 @@ feature 'Filter' do
     FactoryGirl.create(:type, ad_type: 'type', id: 1)
     searchable_ad = FactoryGirl.create(:published, type_id: 1)
     secondary_ad = FactoryGirl.create(:published)
-    visit '/ads'
+    visit ads_path
     check 'type'
     click_on 'search_button'
     expect(page).to have_content searchable_ad.body
@@ -29,7 +33,7 @@ feature 'Filter' do
     FactoryGirl.create(:published, title: 'AAA')
     FactoryGirl.create(:published, title: 'BBB')
     FactoryGirl.create(:published, title: 'CCC')
-    visit '/ads'
+    visit ads_path
     click_on 'Title'
     expect(page).to have_text /AAA.+BBB.+CCC/
     click_on 'Title'

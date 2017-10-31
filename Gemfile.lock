@@ -317,6 +317,7 @@ DEPENDENCIES
   enumerize
   factory_girl_rails (~> 4.0)
   faker
+  i18n
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
