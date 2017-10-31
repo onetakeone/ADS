@@ -17,14 +17,10 @@
 rerun.txt
 
 # Ignore configs.
-#/config/environments
-#/config/initializers
 #/config/initializers/secret_token.rb
-#/config/secrets.yml
-#/config/boot.rb
-#/config/cable.yml
-#/config/database.yml
-#/config/secrets.yml
+/config/secrets.yml
+/config/cable.yml
+/config/database.yml
 
 # Ignore public.
 /public/uploads/
