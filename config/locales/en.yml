@@ -52,6 +52,11 @@ en:
     destroy: '| Delete '
     save: 'Save'
     confirm: 'Are you sure?'
+    search: 'Search'
+    sort:
+      sort_by: 'sort by'
+      title: 'Title'
+      release: 'Released'
 
   ads:
     notice:

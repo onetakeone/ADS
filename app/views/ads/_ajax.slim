@@ -1,10 +1,10 @@
 = hidden_field_tag :direction, params[:direction] 
 = hidden_field_tag :sort, params[:sort] 
-i sort by:
+i #{t'layout.sort.sort_by'}:
 div class = b_link
-  u = sortable 'title', 'Title ' 
+  u = sortable 'title', t('layout.sort.title') 
 div class = b_link
-  u = sortable 'created_at', ' Released' 
+  u = sortable 'created_at', t('layout.sort.released')  
 table  
   tr
     - @ajax.each do |ad| 
