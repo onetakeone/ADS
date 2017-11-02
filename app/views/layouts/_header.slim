@@ -50,11 +50,12 @@ header
             a.dropdown-item
               div#nav
                 = link_to t('ads.index.filter.myads'), user_ads_path(current_user), class: b_link 
-    p#ads
-      = t('layout.header.lang')
-      - if I18n.locale == I18n.default_locale
+    p
+      - if I18n.locale == :en
+        = image_tag 'rus.png'
         b = link_to t('layout.header.rus'), {:locale => 'ru'}
-      - else
+      - if I18n.locale == :ru
+        = image_tag 'eng.png'
         b = link_to t('layout.header.eng'), {:locale => 'en'}
 
 

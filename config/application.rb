@@ -17,8 +17,8 @@ module ADS
       g.jbuilder        false
     end
 
-    config.i18n.default_locale = :en
-    I18n.available_locales = [:en, :ru]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :ru
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1

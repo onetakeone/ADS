@@ -32,9 +32,8 @@
 en:
   layout:
     header:
-      lang: 'Переключить на: '
-      eng: 'English'
-      rus: 'Русский'
+      eng: 'ENG (English)'
+      rus: 'RUS (Русский)'
       adverts: 'Adverts'
       create_ad: 'New Ad'
       admin_tools: 'Admin Tools'

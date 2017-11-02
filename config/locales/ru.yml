@@ -5,9 +5,8 @@
 ru:
   layout:
     header:
-      lang: 'Switch to: '
-      eng: 'English'
-      rus: 'Русский'
+      eng: 'ENG (English)'
+      rus: 'RUS (Русский)'
       adverts: 'Реклама'
       create_ad: 'Создать'
       admin_tools: 'Админка'
