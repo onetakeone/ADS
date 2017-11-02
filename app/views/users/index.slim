@@ -10,7 +10,7 @@ hr
 				h1
 						b = u.username.capitalize
 				h2 
-					i = u.role
+					i = rolable(u.role)
 				= link_to t('users.index.edit'), { controller: :users, action: :edit, id: u.id}, class: b_pri if can? :edit, u
 			td
 				table
@@ -21,7 +21,7 @@ hr
 					tr
 						- u.ads.each do |a|
 							td
-								u = link_to a.state.capitalize, edit_ad_path(a)
+								u = link_to statable(a.state), edit_ad_path(a)
 		tr
 			td
 			  = destroy_h_u(u)

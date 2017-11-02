@@ -25,10 +25,23 @@ ru:
     save: 'Сохранить'
     confirm: 'Точно?'
     search: 'Поиск'
+    by: 'автор'
     sort:
       sort_by: 'сортировка'
       title: 'Заголовок'
       release: 'Дата'
+    states:
+      new: 'Новое'
+      denied: 'Отклонено'
+      verified: 'Проверено'
+      deleted: 'Удалено'
+      published: 'Опубликовано'
+      archieved: 'Архив'
+      draft: 'Черновик' 
+    roles:
+      user: 'Пользователь'
+      guest: 'Гость'
+      admin: 'Администратор'
 
   ads:
     notice:

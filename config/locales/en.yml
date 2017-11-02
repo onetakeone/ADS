@@ -52,10 +52,23 @@ en:
     save: 'Save'
     confirm: 'Are you sure?'
     search: 'Search'
+    by: 'by'
     sort:
       sort_by: 'sort by'
       title: 'Title'
       release: 'Released'
+    states:
+      new: 'New'
+      denied: 'Denied'
+      verified: 'Verified'
+      deleted: 'Deleted'
+      published: 'Published'
+      archieved: 'archieved'
+      draft: 'Draft'
+    roles:
+      user: 'User'
+      guest: 'Guest'
+      admin: 'Admin'
 
   ads:
     notice:

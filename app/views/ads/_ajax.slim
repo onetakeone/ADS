@@ -15,7 +15,7 @@ table
           td
             table
               tr
-                td = ad.state.upcase
+                td = statable(ad.state)
               tr
                 td
                   h2  = ad.type.ad_type
@@ -28,7 +28,7 @@ table
               tr
                 td
                   p
-                    i by:
+                    i #{t'layout.by'}:
                     b = ad.user.username
               tr 
                 td

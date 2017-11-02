@@ -9,7 +9,7 @@ hh = t('users.ads.heading')
           tr
             td
               p = ad.user.username
-              h1 = ad.state.upcase
+              h1 = statable(ad.state)
             tr
               td
                 = ad.type.ad_type
