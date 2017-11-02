@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do 
-  root to: 'ads#index'
+Rails.application.routes.draw do   
   scope "/:locale", locale: /#{I18n.available_locales.join('|')}/ do
     devise_for :users
     devise_scope :user do
@@ -18,4 +17,6 @@ Rails.application.routes.draw do
     resources :ads
     resources :types
   end
+  get '/:locale' => 'ads#index'
+  root to: 'ads#index'
 end

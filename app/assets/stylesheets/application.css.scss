@@ -16,7 +16,7 @@
  @import "bootstrap";
 
 .bgr { 
-	background: url('/crypto.jpg')no-repeat right bottom fixed;
+	background: url(asset-path("crypto.jpg")) no-repeat right bottom fixed;
 	background-size:62%;
 }
 
