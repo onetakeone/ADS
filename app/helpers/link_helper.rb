@@ -42,7 +42,7 @@ module LinkHelper
   def destroy_h_u(obj)
     if can? :destroy, obj
       link_to t('layout.destroy'), destroy_user_path(obj), method: :delete,
-                                        data: { confirm: t('layout.confirm') }
+                                                           data: { confirm: t('layout.confirm') }
     end
   end
 

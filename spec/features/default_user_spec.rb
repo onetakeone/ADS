@@ -7,9 +7,9 @@ include Warden::Test::Helpers
 
 feature 'User' do
   before :each do
-    default_url_options[ :locale ] = 'en'
+    default_url_options[:locale] = 'en'
   end
-  
+
   scenario 'opens main page' do
     visit ads_path
     expect(page).to have_content I18n.t('ads.index.heading')

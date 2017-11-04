@@ -7,7 +7,7 @@ include Warden::Test::Helpers
 
 feature 'Admin' do
   before :each do
-    default_url_options[ :locale ] = 'en'
+    default_url_options[:locale] = 'en'
   end
 
   scenario 'signs in as admin' do

@@ -52,7 +52,7 @@ class Ad < ApplicationRecord
   # Search methods.
   include PgSearch
   pg_search_scope :search_engine, against: %i[title body],
-                   using: { tsearch: { prefix: true, any_word: true } }
+                                  using: { tsearch: { prefix: true, any_word: true } }
   # pg_search_scope :search_type, against: [:type_id]
 
   scope :published, -> { where(state: 'published') }

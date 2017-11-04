@@ -21,16 +21,14 @@ module ApplicationHelper
                'deleted' => t('layout.states.deleted'),
                'published' => t('layout.states.published'),
                'archieved' => t('layout.states.archieved'),
-               'draft' => t('layout.states.draft') 
-             }
-    states[state]         
+               'draft' => t('layout.states.draft') }
+    states[state]
   end
 
   def rolable(role)
     roles = { 'user' => t('layout.roles.user'),
               'guest' => t('layout.roles.guest'),
-              'admin' => t('layout.roles.admin'),
-            }
-    roles[role]         
+              'admin' => t('layout.roles.admin') }
+    roles[role]
   end
 end

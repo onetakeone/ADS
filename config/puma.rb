@@ -11,7 +11,7 @@ threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests;
 #
-port        ENV['PORT'] 
+port        ENV['PORT']
 
 # Specifies the `environment` that Puma will run in.
 #

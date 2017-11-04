@@ -6,7 +6,7 @@ include Warden::Test::Helpers
 
 feature 'Filter' do
   before :each do
-    default_url_options[ :locale ] = 'en'
+    default_url_options[:locale] = 'en'
   end
 
   scenario 'retrieves advert matching to the query' do
